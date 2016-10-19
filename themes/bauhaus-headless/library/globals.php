@@ -1,5 +1,3 @@
 <?php
-
-// Nothing happening here.
-
+//
 ?>
