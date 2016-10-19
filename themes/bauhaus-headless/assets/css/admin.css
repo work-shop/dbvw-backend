@@ -1,0 +1,24 @@
+#cpt_info_box{
+	display: none !important;
+}
+
+.wp-admin .acf_relationship .relationship_list{
+	/* height: 600px; */
+}
+
+.wp-admin .acf_relationship .relationship_right .relationship_list{
+	/* height: 600px  !important;	 */
+}
+
+.wp-admin #sorter_box{
+	background: none;
+	padding: 0;
+}
+
+.wp-admin #sorter_box h3{
+	 display: none; 
+}
+
+.wp-admin #catOrderedRadioBox{
+	 display: none; 
+}
