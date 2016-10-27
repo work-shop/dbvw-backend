@@ -36,14 +36,14 @@ class WS_Init_Actions extends WS_Action_Set {
 				    'view_item' => 'View Project',
 				    'search_items' => 'Search Projects',
 				    'not_found' =>  'No Projects found',
-				    'not_found_in_trash' => 'No Projects found in Trash', 				
+				    'not_found_in_trash' => 'No Projects found in Trash',
 				),
 				'public' => true,
 				'has_archive' => true,
 				'rewrite' => array('slug' => 'projects'),
 				'show_in_rest'       => true,
   				'rest_base'          => 'projects',
-  				'rest_controller_class' => 'WP_REST_Posts_Controller',				
+  				'rest_controller_class' => 'WP_REST_Posts_Controller',
 				'supports' => array( 'title', 'thumbnail')
 			));
 
@@ -60,14 +60,14 @@ class WS_Init_Actions extends WS_Action_Set {
 				    'view_item' => 'View Person',
 				    'search_items' => 'Search People',
 				    'not_found' =>  'No People found',
-				    'not_found_in_trash' => 'No People found in Trash', 				
+				    'not_found_in_trash' => 'No People found in Trash',
 				),
 				'public' => true,
 				'has_archive' => true,
 				'rewrite' => array('slug' => 'people'),
 				'show_in_rest'       => true,
   				'rest_base'          => 'people',
-  				'rest_controller_class' => 'WP_REST_Posts_Controller',				
+  				'rest_controller_class' => 'WP_REST_Posts_Controller',
 				'supports' => array( 'title', 'thumbnail')
 			));
 
@@ -84,24 +84,24 @@ class WS_Init_Actions extends WS_Action_Set {
 				    'view_item' => 'View About Page',
 				    'search_items' => 'Search About Pages',
 				    'not_found' =>  'No About Pages found',
-				    'not_found_in_trash' => 'No About Pages found in Trash', 				
+				    'not_found_in_trash' => 'No About Pages found in Trash',
 				),
 				'public' => true,
 				'has_archive' => true,
 				'rewrite' => array('slug' => 'about'),
 				'show_in_rest'       => true,
   				'rest_base'          => 'about',
-  				'rest_controller_class' => 'WP_REST_Posts_Controller',				
+  				'rest_controller_class' => 'WP_REST_Posts_Controller',
 				'supports' => array( 'title', 'thumbnail')
-			));		
+			));
 
 
 		if ( function_exists( 'add_theme_support' ) ) {
 			add_theme_support( 'post-thumbnails' );
-		    	set_post_thumbnail_size( 600, 400, true ); 
+		    	set_post_thumbnail_size( 600, 400, true );
 		}
-		if ( function_exists( 'add_image_size' ) ) {  
-			add_image_size( 'hero', 1440, 768, true );  					
+		if ( function_exists( 'add_image_size' ) ) {
+			add_image_size( 'hero', 1440, 768, true );
 		}
 
 	}
@@ -114,13 +114,13 @@ class WS_Init_Actions extends WS_Action_Set {
 	}
 
 	private function enqueue_theme_scripts() {
-		if (!file_exists( dirname( __FILE__ ) . '/env_prod' )){	
-		}		
+		if (!file_exists( dirname( __FILE__ ) . '/env_prod' )){
+		}
 	}
 
-	private function enqueue_theme_styles() { 
+	private function enqueue_theme_styles() {
 
-	}	
+	}
 
 
 	/** REMOVE NATIVE POST FORMATS */
@@ -150,25 +150,22 @@ class WS_Init_Actions extends WS_Action_Set {
 
 	private function remove_acf_menu(){
 	    // provide a list of usernames who can edit custom field definitions here
-	    $admins = array( 
+	    $admins = array(
 	        'dev','greg','nic'
 	    );
-	 
+
 	    // get the current user
 	    $current_user = wp_get_current_user();
-	 
+
 	    // match and remove if needed
 	    if( !in_array( $current_user->user_login, $admins ) )
 	    {
 	        remove_menu_page('edit.php?post_type=acf');
 	    }
-	 
+
 	}
 
 }
 
 
 new WS_Init_Actions();
-
-
-
