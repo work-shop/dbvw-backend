@@ -129,7 +129,7 @@ class WS_Init_Actions extends WS_Action_Set {
 				'show_in_rest'       => true,
 				'rest_base'          => 'news',
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
-				'supports' => array( 'title', 'thumbnail','editor')
+				'supports' => array( 'title', 'thumbnail')
 				));
 
 	}
