@@ -23,11 +23,12 @@
 	display: none; 
 }
 
-.field_type-message{
+.acf-field-message{
 	background: #ffffb2;
+	padding-bottom: 7px !important;
 }
 
-.field_type-message h2{
-	font-size: 1.1em !important;
-	padding: 0px 0px 0px 5px !important;
-}
+// .field_type-message h2{
+// 	font-size: 1.1em !important;
+// 	padding: 0px 0px 0px 5px !important;
+// }

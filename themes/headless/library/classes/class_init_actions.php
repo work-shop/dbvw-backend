@@ -27,11 +27,33 @@ class WS_Init_Actions extends WS_Action_Set {
 		}
 
 		//add ACF options pages
+		//optional - include a custom icon, list of icons available at https://developer.wordpress.org/resource/dashicons/
 		if( function_exists('acf_add_options_page') ) {
-			acf_add_options_page('Theme Settings');
-			acf_add_options_page('More Theme Settings');
+			$option_page = acf_add_options_page(array(
+				'page_title' 	=> 'Home Page',
+				'menu_title' 	=> 'Home Page',
+				'menu_slug' 	=> 'home-page',
+				'icon_url'      => 'dashicons-admin-home',
+				'position'		=> '63.3',				
+				));
+			$option_page = acf_add_options_page(array(
+				'page_title' 	=> 'Work Page',
+				'menu_title' 	=> 'Work Page',
+				'menu_slug' 	=> 'work-page',
+				'icon_url'      => 'dashicons-screenoptions',
+				'position'		=> '63.4'
+				));	
+			$option_page = acf_add_options_page(array(
+				'page_title' 	=> 'General Information',
+				'menu_title' 	=> 'General Information',
+				'menu_slug' 	=> 'general-information',
+				'icon_url'      => 'dashicons-index-card',
+				'position'		=> '63.5'
+				));							
 		}
 
+		//register post types
+		//optional - include a custom icon, list of icons available at https://developer.wordpress.org/resource/dashicons/
 		register_post_type( 'projects',
 			array(
 				'labels' => array(
@@ -53,7 +75,8 @@ class WS_Init_Actions extends WS_Action_Set {
 				'show_in_rest'       => true,
 				'rest_base'          => 'projects',
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
-				'supports' => array( 'title', 'thumbnail')
+				'supports' => array( 'title', 'thumbnail'),
+				'menu_icon'   => 'dashicons-building'
 				));
 
 		register_taxonomy(  
@@ -88,7 +111,8 @@ class WS_Init_Actions extends WS_Action_Set {
 				'show_in_rest'       => true,
 				'rest_base'          => 'people',
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
-				'supports' => array( 'title', 'thumbnail')
+				'supports' => array( 'title', 'thumbnail'),
+				'menu_icon'   => 'dashicons-id'
 				));
 
 		register_post_type( 'about',
@@ -112,7 +136,8 @@ class WS_Init_Actions extends WS_Action_Set {
 				'show_in_rest'       => true,
 				'rest_base'          => 'about',
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
-				'supports' => array( 'title', 'thumbnail')
+				'supports' => array( 'title', 'thumbnail'),
+				'menu_icon'   => 'dashicons-media-default'				
 				));
 
 		register_post_type( 'news',
