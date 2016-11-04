@@ -11,7 +11,6 @@ class WS_Init_Actions extends WS_Action_Set {
 		parent::__construct(
 			array(
 				'init' 								=> 'setup',
-				'acf/init'							=> 'acf_setup',
 				'after_theme_setup'					=> array( 'remove_post_formats', 11, 0 ),
 				'login_head'						=> 'login_css',
 				'admin_head'						=> 'admin_css'
@@ -26,7 +25,13 @@ class WS_Init_Actions extends WS_Action_Set {
 			add_image_size( 'hero', 1680, 1050, false );
 			add_image_size( 'person', 500, 500, false );
 		}
-		
+
+		//add ACF options pages
+		if( function_exists('acf_add_options_page') ) {
+			acf_add_options_page('Theme Settings');
+			acf_add_options_page('More Theme Settings');
+		}
+
 		register_post_type( 'projects',
 			array(
 				'labels' => array(
@@ -133,15 +138,6 @@ class WS_Init_Actions extends WS_Action_Set {
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
 				'supports' => array( 'title', 'thumbnail')
 				));
-
-	}
-
-	public function acf_setup() {
-
-		if( function_exists('acf_add_options_page') ) {
-			acf_add_options_page('Theme Settings');
-			acf_add_options_page('More Theme Settings');
-		}
 
 	}
 
