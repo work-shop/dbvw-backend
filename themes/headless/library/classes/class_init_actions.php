@@ -34,21 +34,28 @@ class WS_Init_Actions extends WS_Action_Set {
 				'menu_title' 	=> 'Home Page',
 				'menu_slug' 	=> 'home-page',
 				'icon_url'      => 'dashicons-admin-home',
-				'position'		=> '63.3',				
+				'position'		=> '00.3',				
 				));
+			$option_page = acf_add_options_page(array(
+				'page_title' 	=> 'About Page',
+				'menu_title' 	=> 'About Page',
+				'menu_slug' 	=> 'about-page',
+				'icon_url'      => 'dashicons-index-card',
+				'position'		=> '00.4',				
+				));			
 			$option_page = acf_add_options_page(array(
 				'page_title' 	=> 'Work Page',
 				'menu_title' 	=> 'Work Page',
 				'menu_slug' 	=> 'work-page',
 				'icon_url'      => 'dashicons-screenoptions',
-				'position'		=> '63.4'
+				'position'		=> '01.5'
 				));	
 			$option_page = acf_add_options_page(array(
 				'page_title' 	=> 'General Information',
 				'menu_title' 	=> 'General Information',
 				'menu_slug' 	=> 'general-information',
-				'icon_url'      => 'dashicons-index-card',
-				'position'		=> '63.5'
+				'icon_url'      => 'dashicons-location',
+				'position'		=> '01.6'
 				));							
 		}
 
@@ -115,31 +122,6 @@ class WS_Init_Actions extends WS_Action_Set {
 				'menu_icon'   => 'dashicons-id'
 				));
 
-		register_post_type( 'about',
-			array(
-				'labels' => array(
-					'name' => 'About',
-					'singular_name' =>'About Page',
-					'add_new' => 'Add New',
-					'add_new_item' => 'Add New About Page',
-					'edit_item' => 'Edit About Page',
-					'new_item' => 'New About Page',
-					'all_items' => 'All About Pages',
-					'view_item' => 'View About Page',
-					'search_items' => 'Search About Pages',
-					'not_found' =>  'No About Pages found',
-					'not_found_in_trash' => 'No About Pages found in Trash',
-					),
-				'public' => true,
-				'has_archive' => true,
-				'rewrite' => array('slug' => 'about'),
-				'show_in_rest'       => true,
-				'rest_base'          => 'about',
-				'rest_controller_class' => 'WP_REST_Posts_Controller',
-				'supports' => array( 'title', 'thumbnail'),
-				'menu_icon'   => 'dashicons-media-default'				
-				));
-
 		register_post_type( 'news',
 			array(
 				'labels' => array(
@@ -161,7 +143,33 @@ class WS_Init_Actions extends WS_Action_Set {
 				'show_in_rest'       => true,
 				'rest_base'          => 'news',
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
-				'supports' => array( 'title', 'thumbnail')
+				'supports' => array( 'title', 'thumbnail'),
+				'menu_icon'	=>	'dashicons-welcome-widgets-menus'
+				));
+
+		register_post_type( 'info',
+			array(
+				'labels' => array(
+					'name' => 'Info Pages',
+					'singular_name' => 'Info Page',
+					'add_new' => 'Add New',
+					'add_new_item' => 'Add New Info Page',
+					'edit_item' => 'Edit Info Page',
+					'new_item' => 'New Info Page',
+					'all_items' => 'All Info Pages',
+					'view_item' => 'View Info Page',
+					'search_items' => 'Search Info Pages',
+					'not_found' =>  'No Info Pages found',
+					'not_found_in_trash' => 'No Info Pages found in Trash',
+					),
+				'public' => true,
+				'has_archive' => true,
+				'rewrite' => array('slug' => 'info_pages'),
+				'show_in_rest'       => true,
+				'rest_base'          => 'about',
+				'rest_controller_class' => 'WP_REST_Posts_Controller',
+				'supports' => array( 'title', 'thumbnail'),
+				'menu_icon'   => 'dashicons-admin-page'				
 				));
 
 	}
