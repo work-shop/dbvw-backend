@@ -147,7 +147,7 @@ class WS_Init_Actions extends WS_Action_Set {
 				'menu_icon'	=>	'dashicons-welcome-widgets-menus'
 				));
 
-		register_post_type( 'info',
+		register_post_type( 'about',
 			array(
 				'labels' => array(
 					'name' => 'Info Pages',
