@@ -23,7 +23,7 @@
 	require_once('library/abstracts/abstract_filter_set.php');
 
 	/* [3] */
-	require_once('library/theme_options.php');
+	require_once('library/theme_options2.php');
 
 	/* [4] */
 	require_once( 'library/classes/class_init_actions.php' );
