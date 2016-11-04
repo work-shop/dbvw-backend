@@ -24,5 +24,8 @@
 	require_once( 'library/classes/class_init_actions.php' );
 	require_once( 'library/classes/class_init_filters.php');
 
+	require_once( 'library/custom_dashboard_setup.php');
+
+
 
 ?>
