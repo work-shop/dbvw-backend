@@ -34,28 +34,28 @@ class WS_Init_Actions extends WS_Action_Set {
 				'menu_title' 	=> 'Home Page',
 				'menu_slug' 	=> 'home-page',
 				'icon_url'      => 'dashicons-admin-home',
-				'position'		=> '00.3',				
+				'position'		=> '1.3',				
 				));
 			$option_page = acf_add_options_page(array(
 				'page_title' 	=> 'About Page',
 				'menu_title' 	=> 'About Page',
 				'menu_slug' 	=> 'about-page',
 				'icon_url'      => 'dashicons-index-card',
-				'position'		=> '00.4',				
+				'position'		=> '1.2',				
 				));			
 			$option_page = acf_add_options_page(array(
 				'page_title' 	=> 'Work Page',
 				'menu_title' 	=> 'Work Page',
 				'menu_slug' 	=> 'work-page',
 				'icon_url'      => 'dashicons-screenoptions',
-				'position'		=> '01.5'
+				'position'		=> '1.5'
 				));	
 			$option_page = acf_add_options_page(array(
 				'page_title' 	=> 'General Information',
 				'menu_title' 	=> 'General Information',
 				'menu_slug' 	=> 'general-information',
 				'icon_url'      => 'dashicons-location',
-				'position'		=> '01.6'
+				'position'		=> '1.6'
 				));							
 		}
 
@@ -106,7 +106,7 @@ class WS_Init_Actions extends WS_Action_Set {
 					'add_new_item' => 'Add New Person',
 					'edit_item' => 'Edit Person',
 					'new_item' => 'New Person',
-					'all_items' => 'All Person',
+					'all_items' => 'All People',
 					'view_item' => 'View Person',
 					'search_items' => 'Search People',
 					'not_found' =>  'No People found',
@@ -164,13 +164,38 @@ class WS_Init_Actions extends WS_Action_Set {
 					),
 				'public' => true,
 				'has_archive' => true,
-				'rewrite' => array('slug' => 'info_pages'),
+				'rewrite' => array('slug' => 'about'),
 				'show_in_rest'       => true,
 				'rest_base'          => 'about',
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
 				'supports' => array( 'title', 'thumbnail'),
 				'menu_icon'   => 'dashicons-admin-page'				
 				));
+
+		register_post_type( 'jobs',
+			array(
+				'labels' => array(
+					'name' => 'Jobs',
+					'singular_name' => 'Job',
+					'add_new' => 'Add New',
+					'add_new_item' => 'Add New Job',
+					'edit_item' => 'Edit Job',
+					'new_item' => 'New Job',
+					'all_items' => 'All Jobs',
+					'view_item' => 'View Job',
+					'search_items' => 'Search Jobs',
+					'not_found' =>  'No Jobs found',
+					'not_found_in_trash' => 'No Jobs found in Trash',
+					),
+				'public' => true,
+				'has_archive' => true,	
+				'rewrite' => array('slug' => 'jobs'),
+				'show_in_rest'       => true,
+				'rest_base'          => 'jobs',
+				'rest_controller_class' => 'WP_REST_Posts_Controller',
+				'supports' => array( 'title'),
+				'menu_icon'   => 'dashicons-clipboard'				
+				));		
 
 	}
 
