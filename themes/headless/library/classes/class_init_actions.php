@@ -34,28 +34,28 @@ class WS_Init_Actions extends WS_Action_Set {
 				'menu_title' 	=> 'Home Page',
 				'menu_slug' 	=> 'home-page',
 				'icon_url'      => 'dashicons-admin-home',
-				'position'		=> '1.3',				
+				'position'		=> '50.1',				
 				));
 			$option_page = acf_add_options_page(array(
 				'page_title' 	=> 'About Page',
 				'menu_title' 	=> 'About Page',
 				'menu_slug' 	=> 'about-page',
 				'icon_url'      => 'dashicons-index-card',
-				'position'		=> '1.2',				
+				'position'		=> '50.3',				
 				));			
 			$option_page = acf_add_options_page(array(
 				'page_title' 	=> 'Work Page',
 				'menu_title' 	=> 'Work Page',
 				'menu_slug' 	=> 'work-page',
 				'icon_url'      => 'dashicons-screenoptions',
-				'position'		=> '1.5'
+				'position'		=> '50.5'
 				));	
 			$option_page = acf_add_options_page(array(
 				'page_title' 	=> 'General Information',
 				'menu_title' 	=> 'General Information',
 				'menu_slug' 	=> 'general-information',
 				'icon_url'      => 'dashicons-location',
-				'position'		=> '1.6'
+				'position'		=> '50.7'
 				));							
 		}
 
