@@ -26,6 +26,10 @@ class WS_Init_Actions extends WS_Action_Set {
 			add_image_size( 'person', 500, 500, false );
 		}
 
+		if ( function_exists( 'add_theme_support' ) ) {
+			add_theme_support( 'post-thumbnails' );
+		}
+
 		//add ACF options pages
 		//optional - include a custom icon, list of icons available at https://developer.wordpress.org/resource/dashicons/
 		if( function_exists('acf_add_options_page') ) {
@@ -195,7 +199,7 @@ class WS_Init_Actions extends WS_Action_Set {
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
 				'supports' => array( 'title'),
 				'menu_icon'   => 'dashicons-clipboard'				
-				));		
+				));
 
 	}
 
