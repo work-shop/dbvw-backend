@@ -98,7 +98,9 @@ class WS_Init_Actions extends WS_Action_Set {
 				'hierarchical' => true,  
 				'label' => 'Project Categories',  
 				'query_var' => true,  
-				'rewrite' => array('slug' => 'project_categories')  
+				'rewrite' => array('slug' => 'project_categories'),
+				'rest_base'          => 'project_categories',
+				'rest_controller_class' => 'WP_REST_Terms_Controller',  
 				)  
 			);
 
