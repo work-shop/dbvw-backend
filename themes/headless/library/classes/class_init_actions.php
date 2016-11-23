@@ -75,7 +75,7 @@ class WS_Init_Actions extends WS_Action_Set {
 					'add_new_item' => 'Add New Project',
 					'edit_item' => 'Edit Project',
 					'new_item' => 'New Project',
-					'all_items' => 'All Project',
+					'all_items' => 'All Projects',
 					'view_item' => 'View Project',
 					'search_items' => 'Search Projects',
 					'not_found' =>  'No Projects found',
