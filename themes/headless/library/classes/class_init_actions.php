@@ -10,10 +10,11 @@ class WS_Init_Actions extends WS_Action_Set {
 
 		parent::__construct(
 			array(
-				'init' 								=> 'setup',
-				'after_theme_setup'					=> array( 'remove_post_formats', 11, 0 ),
-				'login_head'						=> 'login_css',
-				'admin_head'						=> 'admin_css'
+				'init' 					=> 'setup',
+				'after_theme_setup'		=> array( 'remove_post_formats', 11, 0 ),
+				'login_head'			=> 'login_css',
+				'admin_head'			=> 'admin_css',
+				'admin_menu'			=> 'all_settings_link',
 				));
 	}
 
@@ -215,6 +216,11 @@ class WS_Init_Actions extends WS_Action_Set {
 				));
 
 	}
+
+	/* CUSTOM MENU LINK FOR ALL SETTINGS - WILL ONLY APPEAR FOR ADMIN */	
+	public function all_settings_link() {
+		add_options_page(__('All Settings'), __('All Settings'), 'administrator', 'options.php');
+	}	
 
 	/** REMOVE NATIVE POST FORMATS */
 	public function remove_post_formats() { remove_theme_support('post-formats'); }
