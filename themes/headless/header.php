@@ -11,6 +11,8 @@
 			<meta name="author" content="Work-Shop">		
 			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+			<?php phpinfo(); ?>
+
 			<?php wp_head(); ?>
 
 	    </head>
