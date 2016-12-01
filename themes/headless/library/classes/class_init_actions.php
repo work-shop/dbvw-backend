@@ -26,7 +26,8 @@ class WS_Init_Actions extends WS_Action_Set {
 			add_image_size( 'hero', 1680, 1050, false );
 			add_image_size( 'person', 500, 500, false );
 			add_image_size( 'testimonial', 1024, 550, true );			
-			add_image_size( 'category', 1680, 600, true );						
+			add_image_size( 'category', 1680, 600, true );	
+			add_image_size( 'project-slideshow', 1440, 1440, false );														
 		}
 
 		if ( function_exists( 'add_theme_support' ) ) {
