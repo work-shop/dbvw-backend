@@ -2,6 +2,9 @@
 
 final class ITSEC_Mail {
 	private $content = '';
+	private $subject = '';
+	private $recipients = array();
+	private $attachments = array();
 	private $template_path = '';
 
 	public function __construct() {
@@ -127,7 +130,7 @@ final class ITSEC_Mail {
 	}
 
 	public function add_lockouts_summary( $user_count, $host_count ) {
-		$lockouts = $this->get_template( 'lockouts-table.html' );
+		$lockouts = $this->get_template( 'lockouts-summary.html' );
 
 		$replacements = array(
 			'users_text' => esc_html__( 'Users', 'better-wp-security' ),
@@ -149,12 +152,84 @@ final class ITSEC_Mail {
 		$this->content .= $module;
 	}
 
+	public function add_lockouts_table( $lockouts ) {
+		$entry = $this->get_template( 'lockouts-entry.html' );
+		$entries = '';
+
+		foreach ( $lockouts as $lockout ) {
+			if ( 'user' === $lockout['type'] ) {
+				/* translators: 1: Username */
+				$lockout['description'] = sprintf( wp_kses( __( '<b>User:</b> %1$s', 'better-wp-security' ), array( 'b' => array() ) ), $lockout['id'] );
+			} else {
+				/* translators: 1: Hostname */
+				$lockout['description'] = sprintf( wp_kses( __( '<b>Host:</b> %1$s', 'better-wp-security' ), array( 'b' => array() ) ), $lockout['id'] );
+			}
+
+			$entries .= $this->replace_all( $entry, $lockout );
+		}
+
+		$table = $this->get_template( 'lockouts-table.html' );
+
+		$replacements = array(
+			'heading_types'        => __( 'Host/User', 'better-wp-security' ),
+			'heading_until'        => __( 'Lockout in Effect Until', 'better-wp-security' ),
+			'heading_reason'       => __( 'Reason', 'better-wp-security' ),
+			'entries'              => $entries,
+		);
+
+		$table = $this->replace_all( $table, $replacements );
+
+		$this->content .= $table;
+	}
+
 	public function get_content() {
 		return $this->content;
 	}
 
-	public function send( $to, $subject, $attachments = array() ) {
-		return wp_mail( $to, $subject, $this->content, array( 'Content-Type: text/html; charset=UTF-8' ), $attachments );
+	public function set_subject( $subject, $add_site_url = true ) {
+		if ( $add_site_url ) {
+			/* translators: 1: site URL, 2: email subject */
+			$subject = sprintf( __( '[%1$s] %2$s', 'better-wp-security' ), get_option( 'siteurl' ), $subject );
+		}
+
+		$this->subject = esc_html( $subject );
+	}
+
+	public function set_recipients( $recipients ) {
+		$this->recipients = array();
+
+		foreach ( (array) $recipients as $recipient ) {
+			$recipient = trim( $recipient );
+
+			if ( is_email( $recipient ) ) {
+				$this->recipients[] = $recipient;
+			}
+		}
+	}
+
+	public function set_default_recipients() {
+		$recipients  = ITSEC_Modules::get_setting( 'global', 'notification_email' );
+		$this->set_recipients( $recipients );
+	}
+
+	public function set_attachments( $attachments ) {
+		$this->attachments = $attachments;
+	}
+
+	public function add_attachment( $attachment ) {
+		$this->attachments[] = $attachment;
+	}
+
+	public function send() {
+		if ( empty( $this->recipients ) ) {
+			$this->set_default_recipients();
+		}
+
+		if ( empty( $this->subject ) ) {
+			$this->set_default_subject();
+		}
+
+		return wp_mail( $this->recipients, $this->subject, $this->content, array( 'Content-Type: text/html; charset=UTF-8' ), $this->attachments );
 	}
 
 	private function get_template( $template ) {
