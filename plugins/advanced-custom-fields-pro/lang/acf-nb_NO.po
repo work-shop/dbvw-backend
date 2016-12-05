@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: Advanced Custom Fields Pro\n"
 "Report-Msgid-Bugs-To: http://support.advancedcustomfields.com\n"
 "POT-Creation-Date: 2016-11-22 14:49+0100\n"
-"PO-Revision-Date: 2016-11-22 14:55+0100\n"
+"PO-Revision-Date: 2016-11-29 09:41+1000\n"
 "Last-Translator: Elliot Condon <e@elliotcondon.com>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: acf.php\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -650,7 +650,7 @@ msgid ""
 "No fields. Click the <strong>+ Add Field</strong> button to create your "
 "first field."
 msgstr ""
-"Ingen felt. Klikk på <strong>+  Legg til felt</strong- knappen for å lage "
+"Ingen felt. Klikk på <strong>+  Legg til felt</strong> knappen for å lage "
 "ditt første felt."
 
 #: admin/views/field-group-fields.php:43
@@ -1334,8 +1334,8 @@ msgstr "Full størrelse"
 msgid "(no title)"
 msgstr "(ingen tittel)"
 
-#: api/api-helpers.php:1776 fields/page_link.php:284 fields/post_object.php:283
-#: fields/taxonomy.php:988
+#: api/api-helpers.php:1776 fields/page_link.php:284
+#: fields/post_object.php:283 fields/taxonomy.php:988
 msgid "Parent"
 msgstr "Forelder"
 
@@ -1620,8 +1620,8 @@ msgid "The format displayed when editing a post"
 msgstr "Visningsformat når du redigerer et innlegg"
 
 #: fields/date_picker.php:212 fields/date_time_picker.php:202
-#: fields/post_object.php:447 fields/relationship.php:783 fields/select.php:522
-#: fields/time_picker.php:140
+#: fields/post_object.php:447 fields/relationship.php:783
+#: fields/select.php:522 fields/time_picker.php:140
 msgid "Return Format"
 msgstr "Format som skal returneres"
 

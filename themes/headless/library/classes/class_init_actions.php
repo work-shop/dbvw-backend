@@ -22,6 +22,7 @@ class WS_Init_Actions extends WS_Action_Set {
 	public function setup() {
 
 		//add additional featured image sizes
+		//NOTE: wordpress will allow hyphens in these names, but swig or the API(i'm not sure) will not
 		if ( function_exists( 'add_image_size' ) ) {
 			add_image_size( 'hero', 1680, 1050, false );
 			add_image_size( 'person', 500, 500, false );

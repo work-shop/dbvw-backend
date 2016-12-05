@@ -106,6 +106,13 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 5.5.1 =
+* Select field: Fixed bug preventing some field settings from being selected
+* Date picker field: Improved compatibility with customised values
+* Core: Added new 'enqueue_datepicker' setting which can be used to prevent the library from being enqueued
+* Core: Added new 'enqueue_datetimepicker' setting which can be used to prevent the library from being enqueued
+* Core: Minor fixes and improvements
+
 = 5.5.0 =
 * True False field: Added new 'ui' setting which renders as a toggle switch
 * WYSIWYG field: Added new 'delay' setting which delays tinymce initialization until the field is clicked
@@ -124,7 +131,7 @@ http://support.advancedcustomfields.com/
 * Core: Added new 'enqueue_select2' setting which can be used to prevent the library from being enqueued
 * Core: Added new 'enqueue_google_maps' setting which can be used to prevent the library from being enqueued
 * Core: Minor fixes and improvements
-* Language: Updated Portuguese translation - thanks to Pedro Mendonca
+* Language: Updated Portuguese translation - thanks to Pedro Mendonça
 * Language: Updated Norwegian translation - thanks to Havard Grimelid
 * Language: Updated Swedish translation - thanks to Jonathan de Jong
 * Language: Updated German translation - thanks to Ralf Koller
@@ -190,7 +197,7 @@ http://support.advancedcustomfields.com/
 * Core: Fixed bug when editing field settings in Chrome causing required setting to self toggle
 * Core: Improved speed and fixed bugs when creating and restoring revisions
 * Core: Minor fixes and improvements
-* Language: Updated Portuguese translation - thanks to Pedro Mendonca
+* Language: Updated Portuguese translation - thanks to Pedro Mendonça
 * Language: Updated Brazilian Portuguese translation - thanks to Augusto Simão
 * Language: Updated Dutch translation - thanks to Derk Oosterveld
 * Language: Updated Persian translation - thanks to Kamel
@@ -224,7 +231,7 @@ http://support.advancedcustomfields.com/
 * Core: Minor fixes and improvements
 * Language: Updated Swedish translation - thanks to Jonathan de Jong
 * Language: Updated Russian translation - thanks to Andy Toniyevych 
-* Language: Updated Portuguese translation - thanks to Pedro Mendonca
+* Language: Updated Portuguese translation - thanks to Pedro Mendonça
 * Language: Updated Polish translation - thanks to Michal Lepiarz
 * Language: Updated Italian translation - thanks to Davide Pantè
 * Language: Updated German translation - thanks to Ralf Koller
@@ -250,7 +257,7 @@ http://support.advancedcustomfields.com/
 * Core: Fixed bug where comment fields appeared in different locations for logged in/out users
 * Language: Updated Polish translation - thanks to Michal Lepiarz
 * Language: Updated Italian translation - thanks to Davide Pantè
-* Language: Updated Portuguese translation - thanks to Pedro Mendonca
+* Language: Updated Portuguese translation - thanks to Pedro Mendonça
 * Language: Updated Swiss German translation - thanks to Raphael Hüni
 * Language: Updated French Translation - thanks to Maxime Bernard-Jacquet
 
