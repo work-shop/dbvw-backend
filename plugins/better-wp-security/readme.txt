@@ -1,9 +1,9 @@
 === iThemes Security (formerly Better WP Security) ===
 Contributors: ithemes, chrisjean, gerroald, mattdanner
 Tags: security, security plugin, malware, hack, secure, block, SSL, admin, htaccess, lockdown, login, protect, protection, anti virus, attack, injection, login security, maintenance, permissions, prevention, authentication, administration, password, brute force, ban, permissions, bots, user agents, xml rpc, security log
-Requires at least: 4.4
-Tested up to: 4.6.1
-Stable tag: 5.8.0
+Requires at least: 4.5
+Tested up to: 4.7
+Stable tag: 5.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -187,6 +187,9 @@ Free support may be available with the help of the community in the <a href="htt
 5. Free malware scan powered by Sucuri SiteCheck.
 
 == Changelog ==
+
+= 5.8.1 =
+ * Bug Fix: Fixed issue that could cause database backup emails to be sent without the backup zip attached.
 
 = 5.8.0 =
  * Enhancement: Updated the lockouts notification email to a new design. This new design also cleaned up the translation strings to allow better translations.
@@ -1624,5 +1627,5 @@ This release is a complete rewrite from the ground up. Special thanks to Cory Mi
 
 == Upgrade Notice ==
 
-= 5.8.0 =
-Version 5.8.0 adds a new feature to protect against tabnapping. It is recommended for all users.
+= 5.8.1 =
+Version 5.8.1 fixes a bug that could prevent database backup zips from being sent. It is recommended for all users.
