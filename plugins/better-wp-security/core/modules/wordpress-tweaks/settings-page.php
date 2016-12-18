@@ -33,6 +33,12 @@ final class ITSEC_WordPress_Tweaks_Settings_Page extends ITSEC_Module_Settings_P
 			true  => __( 'Allow', 'better-wp-security' ),
 		);
 
+		$rest_api_options = array(
+			'disable'       => esc_html__( 'Disable REST API (recommended)', 'better-wp-security' ),
+			'require-admin' => esc_html__( 'Require Admin Privileges', 'better-wp-security' ),
+			'enable'        => esc_html__( 'Enable REST API', 'better-wp-security' ),
+		);
+
 
 		$jquery_version = ITSEC_Modules::get_setting( $this->id, 'jquery_version' );
 		$jquery_version_is_safe = ITSEC_Lib::is_jquery_version_safe();
@@ -105,6 +111,18 @@ final class ITSEC_WordPress_Tweaks_Settings_Page extends ITSEC_Module_Settings_P
 				<ul>
 					<li><?php echo wp_kses( __( '<strong>Block</strong> - Blocks XML-RPC requests that contain multiple login attempts. This setting is highly recommended.', 'better-wp-security' ), array( 'strong' => array() ) ); ?></li>
 					<li><?php echo wp_kses( __( '<strong>Allow</strong> - Allows XML-RPC requests that contain multiple login attempts. Only use this setting if a service requires it.', 'better-wp-security' ), array( 'strong' => array() ) ); ?></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><label for="itsec-wordpress-tweaks-rest_api"><?php esc_html_e( 'REST API', 'better-wp-security' ); ?></label></th>
+			<td>
+				<p><?php printf( wp_kses( __( 'WordPress\' <a href="%s">REST API</a> provides a method for developers to pull additional information from the site. Most of this information can be accessed without requiring authentication. The follow settings control how this feature operates.', 'better-wp-security' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( 'http://wp-api.org/' ) ); ?></p>
+				<?php $form->add_select( 'rest_api', $rest_api_options ); ?>
+				<ul>
+					<li><?php echo wp_kses( __( '<strong>Disable REST API</strong> - The REST API is disabled on the site. If your site does not use the REST API (there are very few plugins, themes, or other tools that currently use the REST API), we recommend disabling it for now.', 'better-wp-security' ), array( 'strong' => array() ) ); ?></li>
+					<li><?php echo wp_kses( __( '<strong>Require Admin Privileges</strong> - The REST API can only be used by logged in users with admin-level privileges. This allows privileged users to test and develop with the REST API without allowing anonymous access to the data.', 'better-wp-security' ), array( 'strong' => array() ) ); ?></li>
+					<li><?php echo wp_kses( __( '<strong>Enable REST API</strong> - The REST API is fully enabled and will function as normal. Use this setting only if the site makes use of the REST API.', 'better-wp-security' ), array( 'strong' => array() ) ); ?></li>
 				</ul>
 			</td>
 		</tr>

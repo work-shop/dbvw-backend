@@ -13,6 +13,7 @@ final class ITSEC_Wordpress_Tweaks_Settings extends ITSEC_Settings {
 			'file_editor'                 => true,
 			'disable_xmlrpc'              => 0,
 			'allow_xmlrpc_multiauth'      => false,
+			'rest_api'                    => 'enable',
 			'safe_jquery'                 => false,
 			'login_errors'                => false,
 			'force_unique_nicename'       => false,
