@@ -53,13 +53,21 @@ if ( ! function_exists('pmai_render_field')){
 						<?php
 						break;										
 					case 'page_link':
-					case 'post_object':											
-					case 'relationship':
+					case 'post_object':
 						?>
 						<input type="text" placeholder="" value="<?php echo esc_attr( $current_field );?>" name="fields<?php echo $field_name;?>[<?php echo $field['key'];?>]" class="text w95 widefat rad4"/>
-						<a href="#help" class="wpallimport-help" title="<?php _e('Enter in the ID or slug, or IDs or slugs separated by commas.', 'pmxi_plugin'); ?>" style="top:0;">?</a>
+						<a href="#help" class="wpallimport-help" title="<?php _e('Enter the ID, slug, or Title. Separate multiple entries with commas.', 'pmxi_plugin'); ?>" style="top:0;">?</a>
 						<?php
-						break;										
+						break;
+					case 'relationship':
+						?>
+						<div class="input">
+							<input type="text" placeholder="" value="<?php echo ( ! is_array($current_field)) ? esc_attr($current_field) : esc_attr( $current_field['value'] );?>" name="fields<?php echo $field_name;?>[<?php echo $field['key'];?>][value]" class="text widefat rad4" style="width: 75%;"/>
+							<input type="text" style="width:5%; text-align:center;" value="<?php echo (!empty($current_field['delim'])) ? esc_attr( $current_field['delim'] ) : ',';?>" name="fields<?php echo $field_name;?>[<?php echo $field['key'];?>][delim]" class="small rad4">
+							<a href="#help" class="wpallimport-help" title="<?php _e('Enter the ID, slug, or Title. Separate multiple entries with separator character.', 'pmxi_plugin'); ?>" style="top:0;">?</a>
+						</div>
+						<?php
+						break;
 					case 'file':
 						?>
 						<input type="text" placeholder="" value="<?php echo (!is_array($current_field)) ? esc_attr( $current_field ) : esc_attr( $current_field['url'] );?>" name="fields<?php echo $field_name;?>[<?php echo $field['key'];?>][url]" class="text w95 widefat rad4"/>
@@ -132,7 +140,13 @@ if ( ! function_exists('pmai_render_field')){
 						<input type="text" placeholder="" value="<?php echo esc_attr( $current_field );?>" name="fields<?php echo $field_name; ?>[<?php echo $field['key'];?>]" class="text datetimepicker widefat rad4" style="width:200px;"/>
 						<a href="#help" class="wpallimport-help" title="<?php _e('Use any format supported by the PHP strtotime function.', 'pmxi_plugin'); ?>" style="top:0;">?</a>
 						<?php
-						break;		
+						break;
+					case 'time_picker':
+						?>
+						<input type="text" placeholder="" value="<?php echo esc_attr( $current_field );?>" name="fields<?php echo $field_name; ?>[<?php echo $field['key'];?>]" class="text widefat rad4" style="width:200px;"/>
+						<a href="#help" class="wpallimport-help" title="<?php _e('Use H:i:s format.', 'pmxi_plugin'); ?>" style="top:0;">?</a>
+						<?php
+						break;
 					case 'location-field':
 						?>
 						<div class="input">
@@ -599,20 +613,43 @@ if ( ! function_exists('pmai_render_field')){
 														    }															
 														}
 
-														if ( ! empty($parent_field_id) )
+														if (is_numeric($parent_field_id) && $parent_field_id > 0)
 														{
-															if (is_numeric($parent_field_id))
-															{
 
-																$sub_fields = get_posts(array('posts_per_page' => -1, 'post_type' => 'acf-field', 'post_parent' => $parent_field_id, 'post_status' => 'publish'));
+															$sub_fields = get_posts(array('posts_per_page' => -1, 'post_type' => 'acf-field', 'post_parent' => $parent_field_id, 'post_status' => 'publish'));
 
-																if ( ! empty($sub_fields) ){
+															if ( ! empty($sub_fields) ){
 
-																	foreach ($sub_fields as $key => $sub_field){
-																		$sub_fieldData = (!empty($sub_field->post_content)) ? unserialize($sub_field->post_content) : array();			
-																		$sub_fieldData['ID'] = $sub_field->ID;
-																		$sub_fieldData['label'] = $sub_field->post_title;
-																		$sub_fieldData['key'] = $sub_field->post_name;																
+																foreach ($sub_fields as $key => $sub_field){
+																	$sub_fieldData = (!empty($sub_field->post_content)) ? unserialize($sub_field->post_content) : array();
+																	$sub_fieldData['ID'] = $sub_field->ID;
+																	$sub_fieldData['label'] = $sub_field->post_title;
+																	$sub_fieldData['key'] = $sub_field->post_name;
+																	?>
+																	<tr class="field sub_field field_type-<?php echo $sub_fieldData['type'];?> field_key-<?php echo $sub_fieldData['key'];?>">
+																		<td class="label">
+																			<?php echo $sub_fieldData['label'];?>
+																		</td>
+																		<td>
+																			<div class="inner">
+																				<?php echo pmai_render_field($sub_fieldData, $post, $field_name . "[" . $field['key'] . "][rows][ROWNUMBER]"); ?>
+																			</div>
+																		</td>
+																	</tr>
+																	<?php
+																}
+															}
+														}
+														else
+														{
+															$fields = acf_local()->fields;
+
+															if (!empty($fields)){
+																foreach ($fields as $sub_field) {
+																	if ($sub_field['parent'] == $field['key']){
+																		$sub_fieldData = $sub_field;
+																		$sub_fieldData['ID'] = $sub_fieldData['id']    = uniqid();
+
 																		?>
 																		<tr class="field sub_field field_type-<?php echo $sub_fieldData['type'];?> field_key-<?php echo $sub_fieldData['key'];?>">
 																			<td class="label">
@@ -621,40 +658,15 @@ if ( ! function_exists('pmai_render_field')){
 																			<td>
 																				<div class="inner">
 																					<?php echo pmai_render_field($sub_fieldData, $post, $field_name . "[" . $field['key'] . "][rows][ROWNUMBER]"); ?>
-																				</div>	
+																				</div>
 																			</td>
-																		</tr>													
-																		<?php 
+																		</tr>
+																		<?php
 																	}
 																}
 															}
-															else
-															{
-																$fields = acf_local()->fields;
-					
-																if (!empty($fields)){
-																	foreach ($fields as $sub_field) {
-																		if ($sub_field['parent'] == $field['key']){								
-																			$sub_fieldData = $sub_field;																	
-																			$sub_fieldData['ID'] = $sub_fieldData['id']    = uniqid();																			
-
-																			?>
-																			<tr class="field sub_field field_type-<?php echo $sub_fieldData['type'];?> field_key-<?php echo $sub_fieldData['key'];?>">
-																				<td class="label">
-																					<?php echo $sub_fieldData['label'];?>
-																				</td>
-																				<td>
-																					<div class="inner">
-																						<?php echo pmai_render_field($sub_fieldData, $post, $field_name . "[" . $field['key'] . "][rows][ROWNUMBER]"); ?>
-																					</div>	
-																				</td>
-																			</tr>													
-																			<?php 
-																		}
-																	}
-																}	
-															}
 														}
+
 													}	
 													else { 
 
@@ -759,16 +771,7 @@ if ( ! function_exists('pmai_render_field')){
 
 						if ($acf and version_compare($acf->settings['version'], '5.0.0') >= 0){
 
-							if (empty($field['prefix_name'])){
-								?>
-								<p>
-									<?php
-									_e('As this field is configured to clone the data entered into another ACF field, no import options exist for it. Please import your data into the ACF field that this field is cloning.', 'pmxi_plugin');
-									?>
-								</p>
-								<?php
-							}
-							elseif (!empty($field['clone'])) {
+							if (!empty($field['clone'])) {
 								$sub_fields = array();
 								foreach ($field['clone'] as $sub_field_key) {
 									$args = array(

@@ -3,7 +3,7 @@ Contributors: ithemes, chrisjean, gerroald, mattdanner
 Tags: security, security plugin, malware, hack, secure, block, SSL, admin, htaccess, lockdown, login, protect, protection, anti virus, attack, injection, login security, maintenance, permissions, prevention, authentication, administration, password, brute force, ban, permissions, bots, user agents, xml rpc, security log
 Requires at least: 4.5
 Tested up to: 4.7
-Stable tag: 5.9.0
+Stable tag: 6.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -187,6 +187,11 @@ Free support may be available with the help of the community in the <a href="htt
 5. Free malware scan powered by Sucuri SiteCheck.
 
 == Changelog ==
+
+= 6.0.0 =
+ * Bug Fix: Removed "comodo" from the list of user agents blocked by the HackRepair.com blacklist. This ensures that Comodo's AutoSSL feature of cPanel/WHM is able to function.
+ * Updated Feature: Updated the "REST API" feature in the WordPress Tweaks section. The feature now has proper support for protecting privacy on your site without preventing the REST API from functioning.
+ * Enhancement: Updated Security Check to enforce setting the "REST API" setting to "Restricted Access".
 
 = 5.9.0 =
  * New Feature: Added a "REST API" feature in the WordPress Tweaks section. This new feature allows you to block or restrict access to the REST API.
@@ -1630,5 +1635,5 @@ This release is a complete rewrite from the ground up. Special thanks to Cory Mi
 
 == Upgrade Notice ==
 
-= 5.9.0 =
-Version 5.9.0 adds a new feature to block REST API requests. It is recommended for all users.
+= 6.0.0 =
+Version 6.0.0 adds privacy enhancement for the REST API. It is recommended for all users.

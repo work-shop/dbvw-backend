@@ -980,6 +980,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			PMXI_Plugin::$session->save_data();
 
 			$functions = $wp_uploads['basedir'] . DIRECTORY_SEPARATOR . WP_ALL_IMPORT_UPLOADS_BASE_DIRECTORY . DIRECTORY_SEPARATOR . 'functions.php';
+			$functions = apply_filters( 'import_functions_file_path', $functions );
 			if ( @file_exists($functions) )
 				require_once $functions;
 
@@ -1123,6 +1124,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			PMXI_Plugin::$session->save_data();
 
 			$functions = $wp_uploads['basedir'] . DIRECTORY_SEPARATOR . WP_ALL_IMPORT_UPLOADS_BASE_DIRECTORY . DIRECTORY_SEPARATOR . 'functions.php';
+			$functions = apply_filters( 'import_functions_file_path', $functions );
 			if ( @file_exists($functions) )
 				require_once $functions;
 						
@@ -1257,6 +1259,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 
 			$wp_uploads = wp_upload_dir();		
 			$functions  = $wp_uploads['basedir'] . DIRECTORY_SEPARATOR . WP_ALL_IMPORT_UPLOADS_BASE_DIRECTORY . DIRECTORY_SEPARATOR . 'functions.php';
+			$functions = apply_filters( 'import_functions_file_path', $functions );
 			if ( @file_exists($functions) )
 				require_once $functions;
 			
@@ -1412,6 +1415,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 
 			$wp_uploads = wp_upload_dir();	
 			$functions = $wp_uploads['basedir'] . DIRECTORY_SEPARATOR . WP_ALL_IMPORT_UPLOADS_BASE_DIRECTORY . DIRECTORY_SEPARATOR . 'functions.php';
+			$functions = apply_filters( 'import_functions_file_path', $functions );
 			if ( @file_exists($functions) )
 				require_once $functions;
 			
@@ -1532,6 +1536,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 
 			$wp_uploads = wp_upload_dir();		
 			$functions  = $wp_uploads['basedir'] . DIRECTORY_SEPARATOR . WP_ALL_IMPORT_UPLOADS_BASE_DIRECTORY . DIRECTORY_SEPARATOR . 'functions.php';
+			$functions = apply_filters( 'import_functions_file_path', $functions );
 			if ( @file_exists($functions) )
 				require_once $functions;
 			
@@ -1862,6 +1867,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 
 			$wp_uploads = wp_upload_dir();		
 			$functions  = $wp_uploads['basedir'] . DIRECTORY_SEPARATOR . WP_ALL_IMPORT_UPLOADS_BASE_DIRECTORY . DIRECTORY_SEPARATOR . 'functions.php';
+			$functions = apply_filters( 'import_functions_file_path', $functions );
 			if ( @file_exists($functions) )
 				require_once $functions;		
 			
@@ -2441,6 +2447,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 				delete_transient("pmxi_{$tax}_terms");
 
 			$functions  = $wp_uploads['basedir'] . DIRECTORY_SEPARATOR . WP_ALL_IMPORT_UPLOADS_BASE_DIRECTORY . DIRECTORY_SEPARATOR . 'functions.php';
+			$functions = apply_filters( 'import_functions_file_path', $functions );
 			if ( @file_exists($functions) )
 				require_once $functions;
 
@@ -2599,6 +2606,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 		if ( PMXI_Plugin::is_ajax() or ! $ajax_processing ) {	
 			
 			$functions  = $wp_uploads['basedir'] . DIRECTORY_SEPARATOR . WP_ALL_IMPORT_UPLOADS_BASE_DIRECTORY . DIRECTORY_SEPARATOR . 'functions.php';
+			$functions = apply_filters( 'import_functions_file_path', $functions );
 			if ( @file_exists($functions) )
 				require_once $functions;
 

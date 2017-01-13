@@ -671,12 +671,12 @@ class PMXI_Admin_Settings extends PMXI_Controller_Admin {
 
 					      		//PMXI_Import_Record::preprocessXml($xml);
 					      		$xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" . "\n" . $xml;
-					    	
 						      	$dom = new DOMDocument( '1.0', 'UTF-8' );
 								$old = libxml_use_internal_errors(true);
 								$dom->loadXML($xml);
 								libxml_use_internal_errors($old);
-								$xpath = new DOMXPath($dom);									
+								$xpath = new DOMXPath($dom);
+
 								if (($elements = $xpath->query($defaultXpath)) and $elements->length){
 									break;
 								}	

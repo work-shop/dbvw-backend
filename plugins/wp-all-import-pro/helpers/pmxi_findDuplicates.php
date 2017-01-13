@@ -38,6 +38,7 @@ function pmxi_findDuplicates($articleData, $custom_duplicate_name = '', $custom_
                     break;
 
                 default:
+
                     $post_types = (class_exists('PMWI_Plugin') and $articleData['post_type'] == 'product') ? array('product', 'product_variation') : array($articleData['post_type']);
 
                     $sql = $wpdb->prepare("SELECT SQL_CALC_FOUND_ROWS " . $wpdb->posts . ".ID FROM " . $wpdb->posts . " INNER JOIN " . $wpdb->postmeta . " ON ( " . $wpdb->posts . ".ID = " . $wpdb->postmeta . ".post_id ) WHERE 1=1 AND ( ( " . $wpdb->postmeta . ".meta_key = %s AND " . $wpdb->postmeta . ".meta_value = %s ) OR ( " . $wpdb->postmeta . ".meta_key = %s AND " . $wpdb->postmeta . ".meta_value = %s ) ) AND " . $wpdb->posts . ".post_type IN ('". implode("','", $post_types) ."') AND ((" . $wpdb->posts . ".post_status <> 'trash' AND " . $wpdb->posts . ".post_status <> 'auto-draft')) GROUP BY " . $wpdb->posts . ".ID ORDER BY " . $wpdb->posts . ".ID ASC LIMIT 0, 15", trim($custom_duplicate_name), trim($custom_duplicate_value), trim($custom_duplicate_name), htmlspecialchars(trim($custom_duplicate_value)));

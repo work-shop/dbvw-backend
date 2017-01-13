@@ -24,11 +24,12 @@ class WS_Init_Actions extends WS_Action_Set {
 		//add additional featured image sizes
 		//NOTE: wordpress will allow hyphens in these names, but swig or the API(i'm not sure) will not
 		if ( function_exists( 'add_image_size' ) ) {
-			add_image_size( 'hero', 1680, 1050, false );
 			add_image_size( 'person', 500, 500, false );
-			add_image_size( 'testimonial', 1024, 550, true );			
+			add_image_size( 'news', 512, 275, true );
+			add_image_size( 'testimonial', 1024, 550, true );	
+			add_image_size( 'projectslideshow', 1440, 1440, false );																			
 			add_image_size( 'category', 1680, 600, true );	
-			add_image_size( 'projectslideshow', 1440, 1440, false );														
+			add_image_size( 'hero', 1680, 1050, false );			
 		}
 
 		if ( function_exists( 'add_theme_support' ) ) {
