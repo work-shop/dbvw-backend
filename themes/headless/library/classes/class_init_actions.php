@@ -27,7 +27,7 @@ class WS_Init_Actions extends WS_Action_Set {
 			add_image_size( 'person', 500, 500, false );
 			add_image_size( 'news', 512, 275, true );
 			add_image_size( 'testimonial', 1024, 550, true );	
-			add_image_size( 'projectslideshow', 1440, 1440, false );																			
+			add_image_size( 'projectslideshow', 1440, 1440, false );																		
 			add_image_size( 'category', 1680, 600, true );	
 			add_image_size( 'hero', 1680, 1050, false );			
 		}
@@ -36,38 +36,6 @@ class WS_Init_Actions extends WS_Action_Set {
 			add_theme_support( 'post-thumbnails' );
 		}
 
-		//add ACF options pages
-		//optional - include a custom icon, list of icons available at https://developer.wordpress.org/resource/dashicons/
-		if( function_exists('acf_add_options_page') ) {
-			$option_page = acf_add_options_page(array(
-				'page_title' 	=> 'Home Page',
-				'menu_title' 	=> 'Home Page',
-				'menu_slug' 	=> 'home-page',
-				'icon_url'      => 'dashicons-admin-home',
-				'position'		=> '50.1',				
-				));
-			$option_page = acf_add_options_page(array(
-				'page_title' 	=> 'About Page',
-				'menu_title' 	=> 'About Page',
-				'menu_slug' 	=> 'about-page',
-				'icon_url'      => 'dashicons-index-card',
-				'position'		=> '50.3',				
-				));			
-			$option_page = acf_add_options_page(array(
-				'page_title' 	=> 'Work Page',
-				'menu_title' 	=> 'Work Page',
-				'menu_slug' 	=> 'work-page',
-				'icon_url'      => 'dashicons-screenoptions',
-				'position'		=> '50.5'
-				));	
-			$option_page = acf_add_options_page(array(
-				'page_title' 	=> 'General Information',
-				'menu_title' 	=> 'General Information',
-				'menu_slug' 	=> 'general-information',
-				'icon_url'      => 'dashicons-location',
-				'position'		=> '50.7'
-				));							
-		}
 
 		//register post types
 		//optional - include a custom icon, list of icons available at https://developer.wordpress.org/resource/dashicons/
@@ -218,15 +186,46 @@ class WS_Init_Actions extends WS_Action_Set {
 				'menu_icon'   => 'dashicons-clipboard'				
 				));
 
+		//add ACF options pages
+		//optional - include a custom icon, list of icons available at https://developer.wordpress.org/resource/dashicons/
+		if( function_exists('acf_add_options_page') ) {
+			$option_page = acf_add_options_page(array(
+				'page_title' 	=> 'Home Page',
+				'menu_title' 	=> 'Home Page',
+				'menu_slug' 	=> 'home-page',
+				'icon_url'      => 'dashicons-admin-home',
+				'position'		=> '50.1',				
+				));
+			$option_page = acf_add_options_page(array(
+				'page_title' 	=> 'About Page',
+				'menu_title' 	=> 'About Page',
+				'menu_slug' 	=> 'about-page',
+				'icon_url'      => 'dashicons-index-card',
+				'position'		=> '50.3',				
+				));			
+			$option_page = acf_add_options_page(array(
+				'page_title' 	=> 'Work Page',
+				'menu_title' 	=> 'Work Page',
+				'menu_slug' 	=> 'work-page',
+				'icon_url'      => 'dashicons-screenoptions',
+				'position'		=> '50.5'
+				));	
+			$option_page = acf_add_options_page(array(
+				'page_title' 	=> 'General Information',
+				'menu_title' 	=> 'General Information',
+				'menu_slug' 	=> 'general-information',
+				'icon_url'      => 'dashicons-location',
+				'position'		=> '50.7'
+				));							
+		}
+
+
 	}
 
 	/* CUSTOM MENU LINK FOR ALL SETTINGS - WILL ONLY APPEAR FOR ADMIN */	
 	public function all_settings_link() {
 		add_options_page(__('All Settings'), __('All Settings'), 'administrator', 'options.php');
 	}	
-
-	/** REMOVE NATIVE POST FORMATS */
-	public function remove_post_formats() { remove_theme_support('post-formats'); }
 
 	/** ADMIN DASHBOARD ASSETS */
 	public function login_css() { wp_enqueue_style( 'login_css', get_template_directory_uri() . '/assets/css/login.css' ); }
