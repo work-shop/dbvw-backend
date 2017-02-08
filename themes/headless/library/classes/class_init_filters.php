@@ -44,7 +44,7 @@ class WS_Init_Filters extends WS_Filter_Set {
 	}
 
 	public function my_allow_meta_query( $valid_vars ) {
-		$valid_vars = array_merge( $valid_vars, array( 'meta_key', 'meta_value' ) );
+		$valid_vars = array_merge( $valid_vars, array( 'meta_key', 'meta_value', 'meta_compare' ) );
 		return $valid_vars;
 	}
 
