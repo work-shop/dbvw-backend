@@ -9,7 +9,8 @@ class WS_Init_Filters extends WS_Filter_Set {
 	public function __construct() {
 		parent::__construct( array(
 			'upload_mimes' 			=> 'svg_mime_types',
-			'tiny_mce_before_init'	=> 'my_format_TinyMCE'
+			'tiny_mce_before_init'	=> 'my_format_TinyMCE',
+			'rest_query_vars'       => 'my_allow_meta_query'
 			));
 	}
 
@@ -40,6 +41,11 @@ class WS_Init_Filters extends WS_Filter_Set {
 		$in['toolbar3'] = '';
 		$in['toolbar4'] = '';
 		return $in;
+	}
+
+	public function my_allow_meta_query( $valid_vars ) {
+		$valid_vars = array_merge( $valid_vars, array( 'meta_key', 'meta_value' ) );
+		return $valid_vars;
 	}
 
 }

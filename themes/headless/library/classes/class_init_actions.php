@@ -221,7 +221,6 @@ class WS_Init_Actions extends WS_Action_Set {
 				));							
 		}
 
-
 	}
 
 	/* CUSTOM MENU LINK FOR ALL SETTINGS - WILL ONLY APPEAR FOR ADMIN */	
