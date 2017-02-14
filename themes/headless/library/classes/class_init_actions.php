@@ -79,6 +79,19 @@ class WS_Init_Actions extends WS_Action_Set {
 				)  
 			);
 
+		register_taxonomy(  
+			'project_tags',  
+			'projects',  
+			array(  
+				'hierarchical' => false,  
+				'label' => 'Project Tags',  
+				'query_var' => true,  
+				'rewrite' => array('slug' => 'project_tags'),
+				'rest_base'          => 'project_tags',
+				'rest_controller_class' => 'WP_REST_Terms_Controller',  
+				)  
+			);		
+
 		global $wp_taxonomies;
 		$taxonomy_name = 'project_categories';
 
@@ -87,6 +100,14 @@ class WS_Init_Actions extends WS_Action_Set {
 			$wp_taxonomies[ $taxonomy_name ]->rest_base = $taxonomy_name;
 			$wp_taxonomies[ $taxonomy_name ]->rest_controller_class = 'WP_REST_Terms_Controller';
 		}
+
+		$taxonomy_name = 'project_tags';
+
+		if ( isset( $wp_taxonomies[ $taxonomy_name ] ) ) {
+			$wp_taxonomies[ $taxonomy_name ]->show_in_rest = true;
+			$wp_taxonomies[ $taxonomy_name ]->rest_base = $taxonomy_name;
+			$wp_taxonomies[ $taxonomy_name ]->rest_controller_class = 'WP_REST_Terms_Controller';
+		}		
 
 		register_post_type( 'people',
 			array(
