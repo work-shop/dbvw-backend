@@ -3,7 +3,7 @@
 Plugin Name: WP All Import - ACF Add-On
 Plugin URI: http://www.wpallimport.com/
 Description: Import to Advanced Custom Fields. Requires WP All Import & Advanced Custom Fields.
-Version: 3.1.2
+Version: 3.1.3
 Author: Soflyy
 */
 /**
@@ -24,7 +24,7 @@ define('PMAI_ROOT_URL', rtrim(plugin_dir_url(__FILE__), '/'));
  */
 define('PMAI_PREFIX', 'pmai_');
 
-define('PMAI_VERSION', '3.1.2');
+define('PMAI_VERSION', '3.1.3');
 
 if ( class_exists('PMAI_Plugin') and PMAI_EDITION == "free"){
 
@@ -233,8 +233,27 @@ else {
 			}
 
 			// register admin page pre-dispatcher
-			add_action('admin_init', array($this, 'adminInit'));
+			add_action('admin_init', array($this, 'adminInit'), 1);
+			add_action('init', array($this, 'init'), 10);
 
+		}
+
+		public function init(){
+			self::init_available_acf_fields();
+			$this->load_plugin_textdomain();
+		}
+
+		/**
+		 * Load Localisation files.
+		 *
+		 * Note: the first-loaded translation file overrides any following ones if the same translation is present
+		 *
+		 * @access public
+		 * @return void
+		 */
+		public function load_plugin_textdomain() {
+			$locale = apply_filters( 'plugin_locale', get_locale(), 'wp_all_import_acf_add_on' );
+			load_plugin_textdomain( 'wp_all_import_acf_add_on', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n/languages' );
 		}
 
 		/**
@@ -246,7 +265,6 @@ else {
 			if (preg_match('%^' . preg_quote(str_replace('_', '-', self::PREFIX), '%') . '([\w-]+)$%', $page)) {
 				$this->adminDispatcher($page, strtolower($input->getpost('action', 'index')));
 			}
-			self::init_available_acf_fields();
 		}
 
 		/**

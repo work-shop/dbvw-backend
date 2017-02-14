@@ -315,7 +315,7 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 									
 									<a href="<?php echo add_query_arg(array('id' => $item['id'], 'action' => 'scheduling'), $this->baseUrl)?>"><?php _e('Cron Scheduling', 'wp_all_import_plugin'); ?></a> <br>
 									
-									<a href="<?php echo add_query_arg(array('page' => 'pmxi-admin-history', 'id' => $item['id']), $this->baseUrl)?>"><?php _e('History Logs', 'wp_all_import_plugin'); ?></a>
+									<a href="<?php echo add_query_arg(array('page' => 'pmxi-admin-history', 'id' => $item['id']), remove_query_arg('pagenum', $this->baseUrl))?>"><?php _e('History Logs', 'wp_all_import_plugin'); ?></a>
 
 								</td>
 								<?php

@@ -187,7 +187,9 @@ switch ($post_type){
 					</tr>
 					<?php endif; ?>		
 
-					<?php if ( 'page' == $post_type ):?>							
+					<?php
+					global $wp_version;
+					if ( 'page' == $post_type || version_compare($wp_version, '4.7.0', '>=') ):?>
 					<tr>
 						<td>
 							<h4><?php _e('Page Template', 'wp_all_import_plugin') ?></h4>

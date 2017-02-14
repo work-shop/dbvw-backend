@@ -110,7 +110,7 @@ class WS_Init_Actions extends WS_Action_Set {
 				'show_in_rest'       => true,
 				'rest_base'          => 'people',
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
-				'supports' => array( 'title', 'thumbnail'),
+				'supports' => array( 'title', 'thumbnail', 'editor'),
 				'menu_icon'   => 'dashicons-id'
 				));
 
@@ -135,7 +135,7 @@ class WS_Init_Actions extends WS_Action_Set {
 				'show_in_rest'       => true,
 				'rest_base'          => 'news',
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
-				'supports' => array( 'title', 'thumbnail'),
+				'supports' => array( 'title', 'thumbnail', 'editor'),
 				'menu_icon'	=>	'dashicons-welcome-widgets-menus'
 				));
 
@@ -160,7 +160,7 @@ class WS_Init_Actions extends WS_Action_Set {
 				'show_in_rest'       => true,
 				'rest_base'          => 'about',
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
-				'supports' => array( 'title', 'thumbnail'),
+				'supports' => array( 'title', 'editor'),
 				'menu_icon'   => 'dashicons-admin-page'				
 				));
 
@@ -185,7 +185,7 @@ class WS_Init_Actions extends WS_Action_Set {
 				'show_in_rest'       => true,
 				'rest_base'          => 'jobs',
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
-				'supports' => array( 'title'),
+				'supports' => array( 'title', 'editor'),
 				'menu_icon'   => 'dashicons-clipboard'				
 				));
 

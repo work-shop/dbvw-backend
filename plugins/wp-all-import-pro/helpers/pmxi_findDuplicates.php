@@ -117,38 +117,41 @@ function pmxi_findDuplicates($articleData, $custom_duplicate_name = '', $custom_
 	else{
 
 		if ( ! empty($articleData['post_type'])){
-		    switch ($articleData['post_type']){
-                case 'taxonomies':
-                    $field = $duplicate_indicator == 'title' ? 'name' : 'slug';
-                    if ( empty($indicator_value) ){
-                        $indicator_value = $duplicate_indicator == 'title' ? $articleData['post_title'] : $articleData['slug'];
-                    }
-
-                    return $wpdb->get_col($wpdb->prepare("
-                    SELECT term_id FROM " . $wpdb->terms . "
-                    WHERE                        
-                        term_id != %s
-                        AND REPLACE(REPLACE(REPLACE($field, ' ', ''), '\\t', ''), '\\n', '') = %s
-                    ",
-                        isset($articleData['ID']) ? $articleData['ID'] : 0,
-                        preg_replace('%[ \\t\\n]%', '', esc_attr($indicator_value))
-                    ));
-                    break;
-                default:
-                    $field = 'post_' . $duplicate_indicator; // post_title or post_content
-                    return $wpdb->get_col($wpdb->prepare("
-                    SELECT ID FROM " . $wpdb->posts . "
-                    WHERE
-                        post_type = %s
-                        AND ID != %s
-                        AND REPLACE(REPLACE(REPLACE($field, ' ', ''), '\\t', ''), '\\n', '') = %s
-                    ",
-                            $articleData['post_type'],
-                            isset($articleData['ID']) ? $articleData['ID'] : 0,
-                            preg_replace('%[ \\t\\n]%', '', $articleData[$field])
-                        ));
-                    break;
+      switch ($articleData['post_type']){
+        case 'taxonomies':
+            $field = $duplicate_indicator == 'title' ? 'name' : 'slug';
+            if ( empty($indicator_value) ){
+                $indicator_value = $duplicate_indicator == 'title' ? $articleData['post_title'] : $articleData['slug'];
             }
+            return $wpdb->get_col($wpdb->prepare("
+            SELECT term_id FROM " . $wpdb->terms . "
+            WHERE                        
+                term_id != %s
+                AND (REPLACE(REPLACE(REPLACE($field, ' ', ''), '\\t', ''), '\\n', '') = %s 
+                        OR REPLACE(REPLACE(REPLACE($field, ' ', ''), '\\t', ''), '\\n', '') = %s
+                            OR REPLACE(REPLACE(REPLACE($field, ' ', ''), '\\t', ''), '\\n', '') = %s)
+            ",
+              isset($articleData['ID']) ? $articleData['ID'] : 0,
+              preg_replace('%[ \\t\\n]%', '', esc_attr($indicator_value)),
+              preg_replace('%[ \\t\\n]%', '', htmlentities($indicator_value)),
+              preg_replace('%[ \\t\\n]%', '', $indicator_value)
+            ));
+            break;
+        default:
+            $field = 'post_' . $duplicate_indicator; // post_title or post_content
+            return $wpdb->get_col($wpdb->prepare("
+            SELECT ID FROM " . $wpdb->posts . "
+            WHERE
+                post_type = %s
+                AND ID != %s
+                AND REPLACE(REPLACE(REPLACE($field, ' ', ''), '\\t', ''), '\\n', '') = %s
+            ",
+                $articleData['post_type'],
+                isset($articleData['ID']) ? $articleData['ID'] : 0,
+                preg_replace('%[ \\t\\n]%', '', $articleData[$field])
+            ));
+            break;
+      }
 		}
 		else{			
 			if ($duplicate_indicator == 'title'){

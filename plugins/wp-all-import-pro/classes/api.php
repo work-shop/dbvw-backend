@@ -58,7 +58,6 @@ class PMXI_API
 				<input type="text" name="<?php echo $params['field_name']; ?>" id="<?php echo sanitize_title($params['field_name']); ?>" value="<?php echo esc_attr($params['field_value']); ?>" style="width:100%;"/>
 				<?php
 				break;
-
 			case 'enum':				
 
 				$is_set_with_xpath_visible = true;
