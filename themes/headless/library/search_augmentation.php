@@ -1,7 +1,7 @@
 <?php
 
 
-add_action('save_post', 'populate_the_content');
+//add_action('save_post', 'populate_the_content');
 
 function populate_the_content($post_id) {
 	$ptype = get_post_type( $post_id );
@@ -25,33 +25,37 @@ function populate_the_content($post_id) {
 
 		switch ( $ptype ){
 			case 'projects':
-				$fields = array('location', 'client', 'services', 'timeline', 'short_description' );
-				break;
+			$fields = array('location', 'client', 'services', 'timeline', 'short_description' );
+			break;
 			case 'people':
-				$fields = array('job_title', 'bio');
-				break;
+			$fields = array('job_title', 'bio');
+			break;
 			case 'news':
-				$fields = array('description');
-				break;	
+			$fields = array('description');
+			break;	
 			case 'about':
-				$fields = array('search_description');	
-				break;	
+			$fields = array('search_description');	
+			break;	
 			case 'jobs':
-				$fields = array('job_description', 'how_to_apply');	
-				break;					
+			$fields = array('job_description', 'how_to_apply');	
+			break;										
 
 			default:
-				break;	
+			break;	
+		}
+
+		//$screen = get_current_screen();
+
+		if( count($fields) > 0 ){
+			for ( $i = 0; $i < count($fields); $i++ ) { 
+				$post_content .= get_field( $fields[$i], $post_id ) . ' ';
+
+			// call wp_update_post update, which calls save_post again. E.g:
+				wp_update_post(array('ID' => $post_id, 'post_content' => $post_content));
+			}	
 		}
 
 
-		for ( $i = 0; $i < count($fields); $i++ ) { 
-			$post_content .= get_field( $fields[$i], $post_id ) . ' ';
-		}	
-
-
-	    // call wp_update_post update, which calls save_post again. E.g:
-		wp_update_post(array('ID' => $post_id, 'post_content' => $post_content));
 
 	    // re-hook this function
 		add_action('save_post', 'populate_the_content');

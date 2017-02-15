@@ -29,26 +29,12 @@ require_once( 'library/custom_dashboard_setup.php');
 require_once( 'library/search_augmentation.php');
 
 
-
-// function log_query( $query ){
-// 	write_log('original query: ' . $query);
-// 	$new_query = str_replace('%', ' ', $query);
-// 	write_log('new query: ' . $new_query);
-// 	return $new_query;
-// }
-
-// if (!function_exists('write_log')) {
-// 	function write_log ( $log )  {
-// 		if ( is_array( $log ) || is_object( $log ) ) {
-// 			error_log( print_r( $log, true ) );
-// 		} else {
-// 			error_log( $log );
-// 		}
-// 	}
-// }
-
-
-// add_filter('posts_search', 'log_query');
+function change_wp_search_size($queryVars) {
+	if ( isset($_REQUEST['s']) ) // Make sure it is a search page
+		$queryVars['posts_per_page'] = 20; // Change 10 to the number of posts you would like to show
+	return $queryVars; // Return our modified query variables
+}
+add_filter('request', 'change_wp_search_size'); // Hook our custom function onto the request filter
 
 
 ?>
