@@ -73,7 +73,7 @@ function populate_about_content() {
 		write_log('saving about screen');
 	}
 
-	$fields = array('short_introduction','longer_introduction','people_statement','services_statement','clients_statement');
+	$fields = array('search_description','short_introduction','longer_introduction','people_statement','services_statement','clients_statement');
 	$services = get_field('services','option');
 
 
