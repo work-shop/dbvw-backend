@@ -28,13 +28,23 @@ require_once( 'library/custom_dashboard_setup.php');
 
 require_once( 'library/search_augmentation.php');
 
+// add_action( 'current_screen', 'print_screen' );
 
-function change_wp_search_size($queryVars) {
-	if ( isset($_REQUEST['s']) ) // Make sure it is a search page
-		$queryVars['posts_per_page'] = 20; // Change 10 to the number of posts you would like to show
-	return $queryVars; // Return our modified query variables
-}
-add_filter('request', 'change_wp_search_size'); // Hook our custom function onto the request filter
+// function print_screen( $current_screen ){
+// 	write_log($current_screen);
+// }
 
+// // require_once(ABSPATH . 'wp-admin/includes/screen.php');
+// // $screen = get_current_screen();
+
+// // write_log($screen->id);
+
+// function write_log ( $log )  {
+// 		if ( is_array( $log ) || is_object( $log ) ) {
+// 			error_log( print_r( $log, true ) );
+// 		} else {
+// 			error_log( $log );
+// 		}
+// }
 
 ?>
