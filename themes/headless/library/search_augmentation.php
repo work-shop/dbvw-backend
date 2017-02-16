@@ -26,20 +26,32 @@ function populate_the_content($post_id) {
 
 		switch ( $ptype ){
 			case 'projects':
-			$fields = array('location', 'client', 'services', 'timeline', 'short_description' );
-			break;
+				$fields = array('location', 'client', 'services', 'timeline', 'short_description' );
+				if( have_rows('stories', $post_id) ):
+					while ( have_rows('stories', $post_id) ) : the_row();
+						$item = get_sub_field('story_text');
+						$post_content .= $item  . ' ';
+					endwhile;
+				endif;
+				break;
 			case 'people':
-			$fields = array('job_title', 'bio');
-			break;
+				$fields = array('job_title', 'bio');
+				break;
 			case 'news':
-			$fields = array('description');
-			break;	
+				$fields = array('description');
+				if( have_rows('stories', $post_id) ):
+					while ( have_rows('stories', $post_id) ) : the_row();
+						$item = get_sub_field('story_text');
+						$post_content .= $item  . ' ';
+					endwhile;
+				endif;			
+				break;	
 			case 'about':
-			$fields = array('search_description');	
-			break;	
+				$fields = array('search_description');	
+				break;	
 			case 'jobs':
-			$fields = array('job_description', 'how_to_apply');	
-			break;										
+				$fields = array('job_description', 'how_to_apply');	
+				break;										
 
 			default:
 			break;	
@@ -74,8 +86,6 @@ function populate_about_content() {
 	}
 
 	$fields = array('search_description','short_introduction','longer_introduction','people_statement','services_statement','clients_statement');
-	$services = get_field('services','option');
-
 
 	$post_content = ' ';
 
@@ -87,20 +97,20 @@ function populate_about_content() {
 
 		if( have_rows('services', 'option') ):
 			while ( have_rows('services', 'option') ) : the_row();
-				if( have_rows('sub_services', 'option') ):
-					while ( have_rows('sub_services', 'option') ) : the_row();
-						$item = get_sub_field('sub_service_title');
-						$post_content .= $item  . ' ';
-					endwhile;
-				endif;
-			endwhile;
+		if( have_rows('sub_services', 'option') ):
+			while ( have_rows('sub_services', 'option') ) : the_row();
+		$item = get_sub_field('sub_service_title');
+		$post_content .= $item  . ' ';
+		endwhile;
+		endif;
+		endwhile;
 		endif;
 
 		if( have_rows('awards', 'option') ):
 			while ( have_rows('awards', 'option') ) : the_row();
-				$item = get_sub_field('award_title');
-				$post_content .= $item  . ' ';
-			endwhile;
+		$item = get_sub_field('award_title');
+		$post_content .= $item  . ' ';
+		endwhile;
 		endif;		
 
 		wp_update_post(array('ID' => 1305, 'post_content' => $post_content));	
