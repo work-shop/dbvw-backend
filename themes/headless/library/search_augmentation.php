@@ -81,9 +81,9 @@ function populate_about_content() {
 	$about_screen = 'toplevel_page_about-page';
 	$about_page_id = 1305;
 
-	if( $screen == $about_screen ){
-		write_log('saving about screen');
-	}
+	// if( $screen == $about_screen ){
+	// 	write_log('saving about screen');
+	// }
 
 	$fields = array('search_description','short_introduction','longer_introduction','people_statement','services_statement','clients_statement');
 
