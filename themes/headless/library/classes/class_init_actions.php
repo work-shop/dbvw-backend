@@ -32,6 +32,8 @@ class WS_Init_Actions extends WS_Action_Set {
 			add_image_size( 'projectslideshow', 1440, 1440, false );						
 			add_image_size( 'category', 1680, 600, true );	
 			add_image_size( 'hero', 1680, 1050, false );			
+			add_image_size( 'facebook', 1200, 630, false );			
+
 		}
 
 		if ( function_exists( 'add_theme_support' ) ) {
