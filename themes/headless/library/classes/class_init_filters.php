@@ -10,7 +10,8 @@ class WS_Init_Filters extends WS_Filter_Set {
 		parent::__construct( array(
 			'upload_mimes' 			=> 'svg_mime_types',
 			'tiny_mce_before_init'	=> 'my_format_TinyMCE',
-			'rest_query_vars'       => 'my_allow_meta_query'
+			'rest_query_vars'       => 'my_allow_meta_query',
+			'wp_get_attachment_url' => 'rewrite_cdn_url'
 			));
 	}
 
@@ -47,6 +48,25 @@ class WS_Init_Filters extends WS_Filter_Set {
 		$valid_vars = array_merge( $valid_vars, array( 'meta_key', 'meta_value', 'meta_compare' ) );
 		return $valid_vars;
 	}
+
+	/**
+	 * Rewrite attachment URL from the base CMS form to the desired CDN form.
+	 *
+	 * @filter 'wp_get_attachment_url'
+	 * @param $original string the original attachment URL
+	 * @return the updated CDN url.
+	 */
+	public function rewrite_cdn_url( $original ) {
+		$trailing_string = '/wp-content/uploads/';
+		$cms_url =  get_option( 'siteurl' );
+		$cdn_url = get_option('cdn_url');
+		if ( ! empty( $cdn_url ) ) {
+			return str_replace( $cms_url . $trailing_string, $cdn_url . '/', $original );
+		} else {
+			return $original;
+		}
+	}
+
 
 }
 
