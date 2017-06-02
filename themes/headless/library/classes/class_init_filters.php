@@ -11,7 +11,8 @@ class WS_Init_Filters extends WS_Filter_Set {
 			'upload_mimes' 			=> 'svg_mime_types',
 			'tiny_mce_before_init'	=> 'my_format_TinyMCE',
 			'rest_query_vars'       => 'my_allow_meta_query',
-			'wp_get_attachment_url' => 'rewrite_cdn_url'
+			'wp_get_attachment_url' => 'rewrite_cdn_url',
+			 'jpeg_quality'         => 'set_jpeg_quality'
 			));
 	}
 
@@ -19,6 +20,7 @@ class WS_Init_Filters extends WS_Filter_Set {
 		$mimes['svg'] = 'image/svg+xml';
 		return $mimes;
 	}
+
 
 	public function my_format_TinyMCE( $in ) {
 		$in['remove_linebreaks'] = false;
@@ -66,6 +68,8 @@ class WS_Init_Filters extends WS_Filter_Set {
 			return $original;
 		}
 	}
+
+	public function set_jpeg_quality( $arg ) { return 93; }
 
 
 }
