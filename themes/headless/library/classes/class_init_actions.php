@@ -26,7 +26,7 @@ class WS_Init_Actions extends WS_Action_Set {
 		//NOTE: wordpress will allow hyphens in these names, but swig or the API(i'm not sure) will not
 		if ( function_exists( 'add_image_size' ) ) {
 			add_image_size( 'person', 500, 500, false );
-			add_image_size( 'news', 512, 275, true );
+			add_image_size( 'news', 768, 413, true );//edited from 512x275 on 6-2-17 to test image blurriness
 			add_image_size( 'story', 400, 286, true );
 			add_image_size( 'story2', 500, 750, true );			
 			add_image_size( 'testimonial', 1024, 550, true );	
