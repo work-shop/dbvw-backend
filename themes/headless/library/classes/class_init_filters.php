@@ -69,7 +69,7 @@ class WS_Init_Filters extends WS_Filter_Set {
 		}
 	}
 
-	public function set_jpeg_quality( $arg ) { return 95; }
+	public function set_jpeg_quality( $arg ) { return 90; }
 
 
 }
