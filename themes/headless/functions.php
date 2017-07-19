@@ -33,10 +33,10 @@ add_action( 'rest_api_init', function () {
 	//GET RID OF wp/v2!!!
 	register_rest_route( 'custom', '/relatedprojects', array(
 		'methods'   =>  'GET',
-		'callback'  =>  'get_random',
+		'callback'  =>  array($this,'get_relatedprojects'),
 		) );
 });
-function get_random() {
+function get_relatedprojects() {
 	$project_category = $_GET['category'];
 	$current_project = $_GET['current'];
 
@@ -62,7 +62,15 @@ function get_random() {
         return null;
     }
 
-    return $posts;
+    $data = array();
+    foreach( $posts as $post ) {
+      $itemdata = $this->prepare_item_for_response( $post, $request );
+      $data[] = $this->prepare_response_for_collection( $itemdata );
+    }
+
+    //return $posts;
+
+    return new WP_REST_Response( $data, 200 );
 
 }
 
