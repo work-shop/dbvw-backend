@@ -39,7 +39,7 @@ function get_related_projects( $request ) {
 	$project_category = $_GET['category'];
 	$current_project = $_GET['current'];
 
-	if($project_category) === 'all'{
+	if($project_category === 'all'){
 		$posts = get_posts(
 			array(
 				'posts_per_page' => 3,
