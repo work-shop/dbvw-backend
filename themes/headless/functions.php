@@ -45,7 +45,9 @@ function get_random() {
 			'posts_per_page' => 3,
 			'post_type' => 'projects',
 			'exclude' => array($current_project),
+			'ignore_custom_sort' => true,
 			'orderby' => 'rand',
+			'order'     => 'ASC',
 			'tax_query' => array(
 				array(
 					'taxonomy' => 'project_categories',
