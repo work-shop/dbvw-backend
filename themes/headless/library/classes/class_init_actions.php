@@ -8,16 +8,6 @@ class WS_Init_Actions extends WS_Action_Set {
 	public function __construct() {
 		show_admin_bar(false);
 
-		add_action( 'rest_api_init', function () {
-			register_rest_route( 'custom', '/relatedprojects', array(
-				'methods'   =>  'GET',
-				'callback'  =>  'get_random',
-				) );
-		});
-		function get_random() {
-			return get_posts( array( 'orderby' => 'rand', 'posts_per_page' => 3) );
-		}
-
 		parent::__construct(
 			array(
 				'init' 					=> 'setup',
