@@ -39,23 +39,38 @@ function get_related_projects( $request ) {
 	$project_category = $_GET['category'];
 	$current_project = $_GET['current'];
 
-	$posts = get_posts(
-		array(
-			'posts_per_page' => 3,
-			'post_type' => 'projects',
-			'exclude' => array($current_project),
-			'ignore_custom_sort' => true,
-			'orderby' => 'rand',
-			'order'     => 'ASC',
-			'tax_query' => array(
-				array(
-					'taxonomy' => 'project_categories',
-					'field' => 'slug',
-					'terms' => $project_category,
+	if($project_category) === 'all'{
+		$posts = get_posts(
+			array(
+				'posts_per_page' => 3,
+				'post_type' => 'projects',
+				'exclude' => array($current_project),
+				'ignore_custom_sort' => true,
+				'orderby' => 'rand',
+				'order'     => 'ASC'
+				)
+			);
+	} else{
+		$posts = get_posts(
+			array(
+				'posts_per_page' => 3,
+				'post_type' => 'projects',
+				'exclude' => array($current_project),
+				'ignore_custom_sort' => true,
+				'orderby' => 'rand',
+				'order'     => 'ASC',
+				'tax_query' => array(
+					array(
+						'taxonomy' => 'project_categories',
+						'field' => 'slug',
+						'terms' => $project_category,
+						)
 					)
 				)
-			)
-		);
+			);	
+	}
+
+
 
 	if ( empty( $posts ) ) {
 		return null;
