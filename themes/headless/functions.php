@@ -58,18 +58,19 @@ function get_related_projects( $request ) {
 		);
 
 	if ( empty( $posts ) ) {
-        return null;
-    }
+		return null;
+	}
 
-    // $data = array();
-    // foreach( $posts as $post ) {
-    //   $itemdata = $this->prepare_item_for_response( $post, $request );
-    //   $data[] = $this->prepare_response_for_collection( $itemdata );
-    // }
+	foreach( $posts as $post ) {
+		$post_id = $post->ID;
+		$featured_image = get_the_post_thumbnail( $post_id, 'large');
+		$post['featured_image'] = $featured_image;
+	}
+
 
     //return $posts;
 
-    return new WP_REST_Response( $posts, 200 );
+	return new WP_REST_Response( $posts, 200 );
 
 }
 
