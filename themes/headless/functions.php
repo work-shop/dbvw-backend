@@ -30,7 +30,6 @@ require_once( 'library/search_augmentation.php');
 
 
 add_action( 'rest_api_init', function () {
-	//GET RID OF wp/v2!!!
 	register_rest_route( 'custom', '/relatedprojects', array(
 		'methods'   =>  'GET',
 		'callback'  =>  'get_related_projects',
