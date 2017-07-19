@@ -30,8 +30,7 @@ class WS_Init_Actions extends WS_Action_Set {
 			//add_image_size( 'news', 512, 275, true );//original(pre-digital strategy)
 			add_image_size( 'news', 1280, 675, true );//edited from 512x275 on 6-6-17 to improve image quality
 			add_image_size( 'story', 400, 286, true );
-			add_image_size( 'story2', 500, 750, true );
-			//add_image_size( 'project', 768, 768, true );									
+			add_image_size( 'story2', 500, 750, true );									
 			add_image_size( 'testimonial', 1024, 550, true );	
 			add_image_size( 'projectslideshow', 1680, 1680, false );						
 			add_image_size( 'category', 1680, 600, true );	
