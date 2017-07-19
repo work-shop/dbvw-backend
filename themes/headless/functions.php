@@ -44,6 +44,7 @@ function get_random() {
 		array(
 			'posts_per_page' => 3,
 			'post_type' => 'projects',
+			'exclude' => array($current_project),
 			'orderby' => 'rand',
 			'tax_query' => array(
 				array(
