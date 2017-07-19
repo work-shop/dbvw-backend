@@ -64,7 +64,7 @@ function get_related_projects( $request ) {
 	foreach( $posts as $post ) {
 		$post_id = $post->ID;
 		$featured_image = get_the_post_thumbnail( $post_id );
-		$post->createProperty('featured_image', $featured_image); 
+		$post->featured_image = $featured_image; 
 	}
 
 
