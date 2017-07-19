@@ -38,12 +38,12 @@ add_action( 'rest_api_init', function () {
 function get_random() {
 	$project_category = $_GET['category'];
 	$current_project = $_GET['current'];
-	return get_posts( array( 'orderby' => 'rand', 'posts_per_page' => 3) );
 
 	return get_posts(
 		array(
 			'posts_per_page' => 3,
 			'post_type' => 'projects',
+			'orderby' => 'rand',
 			'tax_query' => array(
 				array(
 					'taxonomy' => 'project_categories',
