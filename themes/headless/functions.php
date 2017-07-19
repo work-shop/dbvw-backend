@@ -62,15 +62,15 @@ function get_related_projects( $request ) {
         return null;
     }
 
-    $data = array();
-    foreach( $posts as $post ) {
-      $itemdata = $this->prepare_item_for_response( $post, $request );
-      $data[] = $this->prepare_response_for_collection( $itemdata );
-    }
+    // $data = array();
+    // foreach( $posts as $post ) {
+    //   $itemdata = $this->prepare_item_for_response( $post, $request );
+    //   $data[] = $this->prepare_response_for_collection( $itemdata );
+    // }
 
-    //return $posts;
+    return $posts;
 
-    return new WP_REST_Response( $data, 200 );
+    //return new WP_REST_Response( $data, 200 );
 
 }
 
