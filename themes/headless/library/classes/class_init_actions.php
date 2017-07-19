@@ -8,6 +8,16 @@ class WS_Init_Actions extends WS_Action_Set {
 	public function __construct() {
 		show_admin_bar(false);
 
+		add_action( 'rest_api_init', function () {
+			register_rest_route( 'api', '/any', array(
+				'methods'   =>  'GET',
+				'callback'  =>  'get_random',
+				) );
+		});
+		function get_random() {
+			return get_posts( array( 'orderby' => 'rand', 'posts_per_page' => 3) );
+		}
+
 		parent::__construct(
 			array(
 				'init' 					=> 'setup',
@@ -237,18 +247,18 @@ class WS_Init_Actions extends WS_Action_Set {
 	 * That API is not available in 4.6.3
 	 */
     public function admin_setup() {
-        register_setting(
-            'general',
-            'cdn_url'
-        );
-        add_settings_field(
-            'cdn_url',
-            'CDN Address (URL)',
-            array( $this, 'render_settings_field' ),
-            'general',
-            'default',
-            array( 'cdn_url', get_option('cdn_url') )
-        );
+    	register_setting(
+    		'general',
+    		'cdn_url'
+    		);
+    	add_settings_field(
+    		'cdn_url',
+    		'CDN Address (URL)',
+    		array( $this, 'render_settings_field' ),
+    		'general',
+    		'default',
+    		array( 'cdn_url', get_option('cdn_url') )
+    		);
     }
     /**
 	 * Callback function to render the CDN URL field in the options.
@@ -257,20 +267,20 @@ class WS_Init_Actions extends WS_Action_Set {
 	 *
 	 */
     public function render_settings_field( $args ) {
-        echo "<input aria-describedby='cdn-description' name='cdn_url' class='regular-text code' type='text' id='" . $args[0] . "' value='" . $args[1] . "'/>";
-        echo "<p id='cdn-description' class='description'>Input the url of the CDN to use with this site or leave this field blank to bypass the CDN.";
+    	echo "<input aria-describedby='cdn-description' name='cdn_url' class='regular-text code' type='text' id='" . $args[0] . "' value='" . $args[1] . "'/>";
+    	echo "<p id='cdn-description' class='description'>Input the url of the CDN to use with this site or leave this field blank to bypass the CDN.";
     }
 
 
-	/* CUSTOM MENU LINK FOR ALL SETTINGS - WILL ONLY APPEAR FOR ADMIN */	
-	public function all_settings_link() {
-		add_options_page(__('All Settings'), __('All Settings'), 'administrator', 'options.php');
-	}	
+    /* CUSTOM MENU LINK FOR ALL SETTINGS - WILL ONLY APPEAR FOR ADMIN */	
+    public function all_settings_link() {
+    	add_options_page(__('All Settings'), __('All Settings'), 'administrator', 'options.php');
+    }	
 
 
-	/** ADMIN DASHBOARD ASSETS */
-	public function login_css() { wp_enqueue_style( 'login_css', get_template_directory_uri() . '/assets/css/login.css' ); }
-	public function admin_css() { wp_enqueue_style( 'admin_css', get_template_directory_uri() . '/assets/css/admin.css' ); }
+    /** ADMIN DASHBOARD ASSETS */
+    public function login_css() { wp_enqueue_style( 'login_css', get_template_directory_uri() . '/assets/css/login.css' ); }
+    public function admin_css() { wp_enqueue_style( 'admin_css', get_template_directory_uri() . '/assets/css/admin.css' ); }
 
 }
 
