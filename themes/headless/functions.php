@@ -35,7 +35,7 @@ add_action( 'rest_api_init', function () {
 		'callback'  =>  'get_related_projects',
 		) );
 });
-function get_related_projects() {
+function get_related_projects( $request ) {
 	$project_category = $_GET['category'];
 	$current_project = $_GET['current'];
 
@@ -61,15 +61,15 @@ function get_related_projects() {
         return null;
     }
 
-    // $data = array();
-    // foreach( $posts as $post ) {
-    //   $itemdata = $this->prepare_item_for_response( $post, $request );
-    //   $data[] = $this->prepare_response_for_collection( $itemdata );
-    // }
+    $data = array();
+    foreach( $posts as $post ) {
+      $itemdata = $this->prepare_item_for_response( $post, $request );
+      $data[] = $this->prepare_response_for_collection( $itemdata );
+    }
 
-    return $posts;
+    //return $posts;
 
-    //return new WP_REST_Response( $data, 200 );
+    return new WP_REST_Response( $data, 200 );
 
 }
 
