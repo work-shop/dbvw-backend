@@ -29,15 +29,32 @@ require_once( 'library/custom_dashboard_setup.php');
 require_once( 'library/search_augmentation.php');
 
 
-// add_action( 'rest_api_init', function () {
-// 	register_rest_route( 'wp/v2', '/relatedprojects', array(
-// 		'methods'   =>  'GET',
-// 		'callback'  =>  'get_random',
-// 		) );
-// });
-// function get_random() {
-// 	return get_posts( array( 'orderby' => 'rand', 'posts_per_page' => 3) );
-// }
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'wp/v2', '/relatedprojects', array(
+		'methods'   =>  'GET',
+		'callback'  =>  'get_random',
+		) );
+});
+function get_random() {
+	$project_category = $_GET['category'];
+	$current_project = $_GET['current'];
+	return get_posts( array( 'orderby' => 'rand', 'posts_per_page' => 3) );
+
+	return get_posts(
+		array(
+			'posts_per_page' => 3,
+			'post_type' => 'projects',
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'project_categories',
+					'field' => 'slug',
+					'terms' => $project_category,
+					)
+				)
+			)
+		);
+
+}
 
 
 // add_action( 'current_screen', 'print_screen' );
