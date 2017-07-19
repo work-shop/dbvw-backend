@@ -63,7 +63,7 @@ function get_related_projects( $request ) {
 
 	foreach( $posts as $post ) {
 		$post_id = $post->ID;
-		$featured_image = get_the_post_thumbnail( $post_id, 'large' );
+		$featured_image = get_the_post_thumbnail_url( $post_id, 'large' );
 		$post->featured_image = $featured_image; 
 	}
 
