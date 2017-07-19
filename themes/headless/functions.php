@@ -30,7 +30,8 @@ require_once( 'library/search_augmentation.php');
 
 
 add_action( 'rest_api_init', function () {
-	register_rest_route( 'wp/v2', '/relatedprojects', array(
+	//GET RID OF wp/v2!!!
+	register_rest_route( 'custom', '/relatedprojects', array(
 		'methods'   =>  'GET',
 		'callback'  =>  'get_random',
 		) );
@@ -39,7 +40,7 @@ function get_random() {
 	$project_category = $_GET['category'];
 	$current_project = $_GET['current'];
 
-	return get_posts(
+	$posts = get_posts(
 		array(
 			'posts_per_page' => 3,
 			'post_type' => 'projects',
@@ -53,6 +54,12 @@ function get_random() {
 				)
 			)
 		);
+
+	if ( empty( $posts ) ) {
+        return null;
+    }
+
+    return $posts;
 
 }
 
