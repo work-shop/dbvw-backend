@@ -28,6 +28,17 @@ require_once( 'library/custom_dashboard_setup.php');
 
 require_once( 'library/search_augmentation.php');
 
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'api', '/relatedprojects', array(
+        'methods'   =>  'GET',
+        'callback'  =>  'get_random',
+    ) );
+});
+function get_random() {
+    return get_posts( array( 'orderby' => 'rand', 'posts_per_page' => 3) );
+}
+
+
 // add_action( 'current_screen', 'print_screen' );
 
 // function print_screen( $current_screen ){
