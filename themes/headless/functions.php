@@ -28,6 +28,9 @@ require_once( 'library/custom_dashboard_setup.php');
 
 require_once( 'library/search_augmentation.php');
 
+//keep this route alive during development
+require_once( 'library/related_projects.php');
+
 //changed to custom_related_projects 11-27-17, instead of related projects by category
 require_once( 'library/custom_related_projects.php');
 
