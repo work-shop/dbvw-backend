@@ -19,9 +19,9 @@ function get_custom_related_projects( $request ) {
 				'posts_per_page' => 3,
 				'post_type' => 'projects',
 				'exclude' => array($current_project),
-				'ignore_custom_sort' => true,
-				'orderby' => 'rand',
-				'order'     => 'ASC'
+				// 'ignore_custom_sort' => true,
+				// 'orderby' => 'rand',
+				// 'order'     => 'ASC'
 			)
 		);
 	}
