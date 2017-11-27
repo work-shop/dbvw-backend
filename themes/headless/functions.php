@@ -32,7 +32,7 @@ require_once( 'library/search_augmentation.php');
 require_once( 'library/related_projects.php');
 
 //changed to custom_related_projects 11-27-17, instead of related projects by category
-require_once( 'library/custom_related_projects.php');
+//require_once( 'library/custom_related_projects.php');
 
 
 ?>
