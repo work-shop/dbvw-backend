@@ -26,7 +26,7 @@ function populate_the_content($post_id) {
 
 		switch ( $ptype ){
 			case 'projects':
-				$fields = array('location', 'client', 'services', 'timeline', 'short_description' );
+				$fields = array('location', 'client', 'services', 'timeline', 'short_description','search_description' );
 				if( have_rows('stories', $post_id) ):
 					while ( have_rows('stories', $post_id) ) : the_row();
 						$item = get_sub_field('story_text');
