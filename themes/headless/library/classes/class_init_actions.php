@@ -16,7 +16,7 @@ class WS_Init_Actions extends WS_Action_Set {
 				'login_head'			=> 'login_css',
 				'admin_head'			=> 'admin_css',
 				'admin_menu'			=> 'all_settings_link'
-				));
+			));
 	}
 
 	/** POST TYPES AND OTHER INIT ACTIONS */
@@ -61,7 +61,7 @@ class WS_Init_Actions extends WS_Action_Set {
 					'search_items' => 'Search Projects',
 					'not_found' =>  'No Projects found',
 					'not_found_in_trash' => 'No Projects found in Trash',
-					),
+				),
 				'public' => true,
 				'has_archive' => true,
 				'rewrite' => array('slug' => 'projects'),
@@ -70,7 +70,7 @@ class WS_Init_Actions extends WS_Action_Set {
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
 				'supports' => array( 'title', 'thumbnail', 'editor'),
 				'menu_icon'   => 'dashicons-building'
-				));
+			));
 
 		register_taxonomy(  
 			'project_categories',  
@@ -82,8 +82,8 @@ class WS_Init_Actions extends WS_Action_Set {
 				'rewrite' => array('slug' => 'project_categories'),
 				'rest_base'          => 'project_categories',
 				'rest_controller_class' => 'WP_REST_Terms_Controller',  
-				)  
-			);
+			)  
+		);
 
 
 		global $wp_taxonomies;
@@ -109,7 +109,7 @@ class WS_Init_Actions extends WS_Action_Set {
 					'search_items' => 'Search People',
 					'not_found' =>  'No People found',
 					'not_found_in_trash' => 'No People found in Trash',
-					),
+				),
 				'public' => true,
 				'has_archive' => true,
 				'rewrite' => array('slug' => 'people'),
@@ -118,7 +118,7 @@ class WS_Init_Actions extends WS_Action_Set {
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
 				'supports' => array( 'title', 'thumbnail', 'editor'),
 				'menu_icon'   => 'dashicons-id'
-				));
+			));
 
 		register_post_type( 'news',
 			array(
@@ -134,7 +134,7 @@ class WS_Init_Actions extends WS_Action_Set {
 					'search_items' => 'Search News Items',
 					'not_found' =>  'No News Items found',
 					'not_found_in_trash' => 'No News Items found in Trash',
-					),
+				),
 				'public' => true,
 				'has_archive' => true,
 				'rewrite' => array('slug' => 'news'),
@@ -143,7 +143,7 @@ class WS_Init_Actions extends WS_Action_Set {
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
 				'supports' => array( 'title', 'thumbnail', 'editor'),
 				'menu_icon'	=>	'dashicons-welcome-widgets-menus'
-				));
+			));
 
 		register_post_type( 'about',
 			array(
@@ -159,7 +159,7 @@ class WS_Init_Actions extends WS_Action_Set {
 					'search_items' => 'Search Info Pages',
 					'not_found' =>  'No Info Pages found',
 					'not_found_in_trash' => 'No Info Pages found in Trash',
-					),
+				),
 				'public' => true,
 				'has_archive' => true,
 				'rewrite' => array('slug' => 'about'),
@@ -168,7 +168,7 @@ class WS_Init_Actions extends WS_Action_Set {
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
 				'supports' => array( 'title', 'editor'),
 				'menu_icon'   => 'dashicons-admin-page'				
-				));
+			));
 
 		register_post_type( 'jobs',
 			array(
@@ -184,7 +184,7 @@ class WS_Init_Actions extends WS_Action_Set {
 					'search_items' => 'Search Jobs',
 					'not_found' =>  'No Jobs found',
 					'not_found_in_trash' => 'No Jobs found in Trash',
-					),
+				),
 				'public' => true,
 				'has_archive' => true,	
 				'rewrite' => array('slug' => 'jobs'),
@@ -193,7 +193,7 @@ class WS_Init_Actions extends WS_Action_Set {
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
 				'supports' => array( 'title', 'editor'),
 				'menu_icon'   => 'dashicons-clipboard'				
-				));
+			));
 
 		//add ACF options pages
 		//optional - include a custom icon, list of icons available at https://developer.wordpress.org/resource/dashicons/
@@ -204,28 +204,35 @@ class WS_Init_Actions extends WS_Action_Set {
 				'menu_slug' 	=> 'home-page',
 				'icon_url'      => 'dashicons-admin-home',
 				'position'		=> '50.1',				
-				));
+			));
 			$option_page = acf_add_options_page(array(
 				'page_title' 	=> 'About Page',
 				'menu_title' 	=> 'About Page',
 				'menu_slug' 	=> 'about-page',
 				'icon_url'      => 'dashicons-index-card',
 				'position'		=> '50.3',				
-				));			
+			));			
 			$option_page = acf_add_options_page(array(
 				'page_title' 	=> 'Work Page',
 				'menu_title' 	=> 'Work Page',
 				'menu_slug' 	=> 'work-page',
 				'icon_url'      => 'dashicons-screenoptions',
 				'position'		=> '50.5'
-				));	
+			));	
+			$option_page = acf_add_options_page(array(
+				'page_title' 	=> 'News Page',
+				'menu_title' 	=> 'News Page',
+				'menu_slug' 	=> 'news-page',
+				'icon_url'      => 'dashicons-welcome-widgets-menus',
+				'position'		=> '50.7'
+			));	
 			$option_page = acf_add_options_page(array(
 				'page_title' 	=> 'General Information',
 				'menu_title' 	=> 'General Information',
 				'menu_slug' 	=> 'general-information',
 				'icon_url'      => 'dashicons-location',
-				'position'		=> '50.7'
-				));							
+				'position'		=> '50.9'
+			));							
 		}
 
 	}
@@ -240,7 +247,7 @@ class WS_Init_Actions extends WS_Action_Set {
     	register_setting(
     		'general',
     		'cdn_url'
-    		);
+    	);
     	add_settings_field(
     		'cdn_url',
     		'CDN Address (URL)',
@@ -248,7 +255,7 @@ class WS_Init_Actions extends WS_Action_Set {
     		'general',
     		'default',
     		array( 'cdn_url', get_option('cdn_url') )
-    		);
+    	);
     }
     /**
 	 * Callback function to render the CDN URL field in the options.
