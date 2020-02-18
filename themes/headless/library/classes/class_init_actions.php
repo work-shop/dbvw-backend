@@ -25,6 +25,13 @@ class WS_Init_Actions extends WS_Action_Set {
 		//add additional featured image sizes
 		//NOTE: wordpress will allow hyphens in these names, but swig or the API(i'm not sure) will not
 		if ( function_exists( 'add_image_size' ) ) {
+
+            add_image_size('progressive', 32, 20, false); 
+            add_image_size('progressive_cropped', 32, 20, true); 
+            add_image_size('xs', 300, 187, false); //1.6:1
+            add_image_size('sm', 768, 480, false); //1.6:1
+            add_image_size('md', 1024, 640, false); //1.6:1
+
 			add_image_size( 'person', 500, 500, false );
 			//add_image_size( 'news', 768, 413, true );//edited from 512x275 on 6-2-17 to test image blurriness
 			//add_image_size( 'news', 512, 275, true );//original(pre-digital strategy)
